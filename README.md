@@ -4,4 +4,4 @@ Connect to Backend
 Connect to client(frontend): 
 cd client 
 npm install
-npm run dev 
+npm start 
