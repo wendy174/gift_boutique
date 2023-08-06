@@ -47,5 +47,5 @@ group :development do
 end
 
 #for render environment 
-bundle lock --add-platform x86_64-linux
+# bundle lock --add-platform x86_64-linux
 
