@@ -46,3 +46,6 @@ group :development do
   # gem "spring"
 end
 
+#for render environment 
+bundle lock --add-platform x86_64-linux
+
