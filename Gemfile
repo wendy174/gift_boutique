@@ -46,6 +46,8 @@ group :development do
   # gem "spring"
 end
 
+gem 'active_model_serializers'
+
 #for render environment 
 # bundle lock --add-platform x86_64-linux
 
