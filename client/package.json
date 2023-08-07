@@ -8,6 +8,7 @@
     "start": "vite --port 4000", 
     "dev": "vite",
     "build": "vite build",
+    "serve": "vite preview", 
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

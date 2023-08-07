@@ -5,7 +5,7 @@ set -o errexit
 # Build commands for front end to create the production build
 rm -rf public
 npm install --prefix client && npm run build --prefix client
-cp -a client/build/. public/
+cp -a client/dist/. public/
 
 # Build commands for back end
 bundle install
