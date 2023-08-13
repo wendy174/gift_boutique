@@ -1,2 +1,0 @@
-class CustomerOne < ApplicationRecord
-end

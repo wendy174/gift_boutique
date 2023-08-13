@@ -1,2 +1,0 @@
-class Seller < ApplicationRecord
-end
