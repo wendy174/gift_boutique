@@ -51,3 +51,4 @@ gem 'active_model_serializers'
 #for render environment 
 # bundle lock --add-platform x86_64-linux
 
+gem 'faker'
