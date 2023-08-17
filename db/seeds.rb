@@ -8,6 +8,10 @@ Seller.destroy_all
 Customer.destroy_all
 Review.destroy_all
 
+# Reset primary key sequence for all tables
+ActiveRecord::Base.connection.tables.each do |t|
+    ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
 
 
 s1 = Seller.create!(
