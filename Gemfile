@@ -52,3 +52,6 @@ gem 'active_model_serializers'
 # bundle lock --add-platform x86_64-linux
 
 gem 'faker'
+
+
+gem 'bcrypt', '~> 3.1.7'
