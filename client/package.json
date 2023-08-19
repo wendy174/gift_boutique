@@ -2,17 +2,21 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "proxy": "http://localhost:3000", 
+  "proxy": "http://localhost:3000",
   "type": "module",
   "scripts": {
-    "start": "vite --port 4000", 
+    "start": "vite --port 4000",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview", 
+    "serve": "vite preview",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
