@@ -238,5 +238,9 @@ r8 = Review.create!(
 
 
 
+puts 'Done seeding'
+
+
+
 
 
