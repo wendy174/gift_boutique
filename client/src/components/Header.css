@@ -9,3 +9,7 @@
     width: 200px; /* You can adjust the width to make the logo smaller */
     height: auto; /* Keep the aspect ratio of the image */
   }
+
+  .logo-image {
+    padding-bottom: 60px;
+  }

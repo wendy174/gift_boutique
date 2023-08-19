@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import { Router, Route} from 'react-router-dom'
 import NavBar from "./NavBar.jsx"
 import Header from "./Header.jsx"
 import './App.css';
@@ -22,6 +19,10 @@ function App() {
     <div className="App">
       <Header className='header' />
       <NavBar />
+      {/* <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/books" element={<BookList />} />
+      </Routes> */}
     </div>
   );
 }
