@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid } from '@mui/material';
+import StarRating from './StarRating.jsx'
 
 
 export default function ItemCard({item}) {
@@ -14,7 +15,7 @@ export default function ItemCard({item}) {
 
 // Use the first image URL if available
   const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
-
+  console.log(item.average_rating)
    
   return (
 
@@ -29,8 +30,8 @@ export default function ItemCard({item}) {
                 <CardContent>
                 <Typography gutterBottom variant="h7" component="div">
                     <h3>{item.name}</h3>
-                    <h7>Price: ${item.price}</h7>
-                    
+                    <h4>Price: ${item.price}</h4>
+                    <StarRating value={item.average_rating}/>
                 </Typography>
                 </CardContent>
             </CardActionArea>
