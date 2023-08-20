@@ -3,6 +3,8 @@ import { Route, Routes, Link } from "react-router-dom"
 import NavBar from "./NavBar.jsx"
 import Header from "./Header.jsx"
 import ItemCard from "./ItemCard.jsx"
+import ItemList from "./ItemList.jsx"
+import ItemPage from "./ItemPage.jsx"
 import './App.css';
 
 
@@ -16,7 +18,7 @@ function App() {
   useEffect(() => { 
     const fetchData = async() => { 
       try { 
-        const resp = await fetch("http://localhost:3000/items")
+        const resp = await fetch("/api/items")
         const itemsData = await resp.json()
         setItems(itemsData)
       } catch (error) { 
@@ -32,9 +34,12 @@ function App() {
     <div className="App">
       <Header className='header' />
       <NavBar />
+      {/* <ItemPage /> */}
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         {/* <Route path="/itemcard" element={<ItemCard />} /> */}
+        <Route path="/itemlist" element={<ItemList items={items}/>} />
+
       </Routes>
     </div>
   );
