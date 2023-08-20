@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
     def index 
         items = Item.all
-        render json: items 
+        render json: items, include: :reviews 
     end
 
     def create 
@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
 
     def show 
         item = find_item 
-        render json: item 
+        render json: item, include: :reviews 
     end
 
     def update 
