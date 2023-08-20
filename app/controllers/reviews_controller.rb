@@ -1,10 +1,9 @@
 class ReviewsController < ApplicationController
-    class ItemsController < ApplicationController
         rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     
         def index 
             reviews = Review.all
-            render json: reviews 
+            render json: reviews, include: :items
         end
     
         def create 
@@ -45,6 +44,5 @@ class ReviewsController < ApplicationController
         end
         
     
-    end 
 
 end
