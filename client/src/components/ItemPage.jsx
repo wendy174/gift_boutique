@@ -1,12 +1,11 @@
 import ItemList from "./ItemList.jsx"
 
 
-export default function ItemPage() { 
-
+export default function ItemPage({items}) { 
 
     return (
-        <div className='itemlist'>
-            <ItemList />
-        </div>
+        <main className='itemlist'>
+            <ItemList items={items} />
+        </main>
     )
 }

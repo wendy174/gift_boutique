@@ -34,12 +34,11 @@ function App() {
     <div className="App">
       <Header className='header' />
       <NavBar />
-      {/* <ItemPage /> */}
+      <ItemPage items={items}/>
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         {/* <Route path="/itemcard" element={<ItemCard />} /> */}
-        <Route path="/itemlist" element={<ItemList items={items}/>} />
-
+        <Route path="/itemlist" element={<ItemList />} />
       </Routes>
     </div>
   );
