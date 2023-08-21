@@ -33,28 +33,30 @@ export default function ItemDetails() {
     const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
   
     return (
-      <div>
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <Card sx={{ display: "flex", flexDirection: "row", height: "360px", width: "900px", gap: "16px", border: "2px solid #000" }}>
-            <CardMedia
+            <Card sx={{ display: "flex", flexDirection: "row", height: "360px", width: "900px", gap: "16px", border: "2px solid #000", alignItems: "center" }}>
+                <CardMedia
                 component="img"
                 height="360px"
                 width="480px"
                 image={imageUrl}
                 alt="Card image"
                 sx={{ objectFit: "contain" }}
-            />
-                <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
-                <Typography variant="h5" color="textSecondary">
+                />
+                <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
+                    <Typography variant="h5" color="textSecondary">
                     ${itemData.price}
                     <br></br>
                     <StarRating value={itemData.average_rating}/>
-                </Typography>
+                    </Typography>
+                </Box>
                 </CardContent>
             </Card>
         </Container>
-      </div>
+
+
     );
   }
   

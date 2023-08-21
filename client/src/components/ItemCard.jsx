@@ -20,23 +20,25 @@ export default function ItemCard({item}) {
    
   return (
     <Link to={`/items/${item.id}`}>
-        <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                <CardMedia
-                component="img"
-                height="140"
-                image={imageUrl}
-                alt={item.name}
-                />
-                <CardContent>
-                <Typography gutterBottom variant="h7" component="div">
-                    <h3>{item.name}</h3>
-                    <h4>Price: ${item.price}</h4>
-                    <StarRating value={item.average_rating}/>
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+      <Card sx={{ maxWidth: 545, minHeight: 400, m: 2, border: '2px solid black' }}> {/* Increased maxWidth and minHeight */}
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="300" 
+            width="400" 
+            image={imageUrl}
+            alt={item.name}
+            sx={{ objectFit: "cover" }} 
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div"> {/* Changed variant to h5 */}
+              <h3>{item.name}</h3>
+              <h4>Price: ${item.price}</h4>
+              <StarRating value={item.average_rating}/>
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
     </Link>
    
   );
