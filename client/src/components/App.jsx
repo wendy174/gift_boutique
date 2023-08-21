@@ -6,13 +6,14 @@ import ItemCard from "./ItemCard.jsx"
 import ItemList from "./ItemList.jsx"
 import ItemPage from "./ItemPage.jsx"
 import './App.css';
-
+import CustomCard from "./CustomCard";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
+import ItemDetails from "./ItemDetails";
 
 
 function App() {
   const [items, setItems] = useState([]);
 
-  console.log(items)
 
   // get request to get all items 
   useEffect(() => { 
@@ -34,11 +35,10 @@ function App() {
     <div className="App">
       <Header className='header' />
       <NavBar />
-      <ItemPage items={items}/>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/itemcard" element={<ItemCard />} /> */}
+        <Route path="/" element={<ItemPage items={items} />} />
         <Route path="/itemlist" element={<ItemList />} />
+        <Route path="/items/:id" element={<ItemDetails />} />
       </Routes>
     </div>
   );

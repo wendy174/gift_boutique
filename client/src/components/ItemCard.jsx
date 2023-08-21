@@ -5,6 +5,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid } from '@mui/material';
 import StarRating from './StarRating.jsx'
+import { Link } from 'react-router-dom';
+
 
 
 export default function ItemCard({item}) {
@@ -15,10 +17,9 @@ export default function ItemCard({item}) {
 
 // Use the first image URL if available
   const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
-  console.log(item.average_rating)
    
   return (
-
+    <Link to={`/items/${item.id}`}>
         <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia
@@ -36,7 +37,7 @@ export default function ItemCard({item}) {
                 </CardContent>
             </CardActionArea>
         </Card>
-
+    </Link>
    
   );
 }
