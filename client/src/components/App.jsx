@@ -9,7 +9,8 @@ import './App.css';
 import CustomCard from "./CustomCard";
 import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import ItemDetails from "./ItemDetails";
-
+import ImageCarousel from './ImageCarousel'
+import ImageCarousel2 from './ImageCarousel2'
 
 function App() {
   const [items, setItems] = useState([]);
@@ -39,6 +40,8 @@ function App() {
         <Route path="/" element={<ItemPage items={items} />} />
         <Route path="/itemlist" element={<ItemList />} />
         <Route path="/items/:id" element={<ItemDetails />} />
+        <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
+        <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} />
       </Routes>
     </div>
   );

@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardMedia, CardContent, Typography, Box, Container } from "@mui/material";
 import StarRating from './StarRating.jsx'
-// ...
+import ImageCarousel from './ImageCarousel'
+import ImageCarousel2 from './ImageCarousel2'
+
 
 export default function ItemDetails() {
     const [itemData, setItemData] = useState(null);
@@ -34,15 +36,8 @@ export default function ItemDetails() {
   
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <Card sx={{ display: "flex", flexDirection: "row", height: "360px", width: "900px", gap: "16px", border: "2px solid #000", alignItems: "center" }}>
-                <CardMedia
-                component="img"
-                height="360px"
-                width="480px"
-                image={imageUrl}
-                alt="Card image"
-                sx={{ objectFit: "contain" }}
-                />
+            <ImageCarousel images={imageUrls} />
+
                 <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
@@ -53,7 +48,6 @@ export default function ItemDetails() {
                     </Typography>
                 </Box>
                 </CardContent>
-            </Card>
         </Container>
 
 
