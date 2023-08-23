@@ -27,7 +27,27 @@ export default function ItemDetails() {
     if (!itemData) {
       return <div>Loading...</div>;
     }
+
+  const handleDeleteItem = async () => {
+    try {
+        const response = await fetch(`/api/items/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            console.log('Item deleted successfully');
+            // You can also navigate the user back to a listing page or inform them of successful deletion
+        } else {
+            const data = await response.json();
+            console.error('Error deleting item:', data.error);
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+  };
   
+ 
+
     // Parse the image URLs from a string to an array
     const imageUrls = JSON.parse(itemData.image);
   
@@ -35,26 +55,26 @@ export default function ItemDetails() {
     const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
   
     return (
-      <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-          <ImageCarousel images={imageUrls} />
-  
-          <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
-                  
-                  <Box mb={2}> {/* Adding margin bottom */}
-                      <Typography variant="h5" color="textSecondary">${itemData.price}</Typography>
-                  </Box>
-                  
-                  <Box mb={2}> {/* Adding margin bottom */}
-                      <StarRating value={itemData.average_rating}/>
-                  </Box>
-  
-                  <DeleteItemButton />
-  
-              </Box>
-          </CardContent>
-      </Container>
-  ); 
+        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <ImageCarousel images={imageUrls} />
+
+                <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
+                    <Typography variant="h5" color="textSecondary">
+                    ${itemData.price}
+                    <br>
+                    </br>
+                    <StarRating value={itemData.average_rating}/>
+                    <br> 
+                    </br>
+                    <DeleteItemButton onClick={handleDeleteItem}/>
+                    </Typography>
+                </Box>
+                </CardContent>
+        </Container>
+
+
+    );
   }
   
