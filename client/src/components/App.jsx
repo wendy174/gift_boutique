@@ -11,6 +11,7 @@ import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import ItemDetails from "./ItemDetails";
 import ImageCarousel from './ImageCarousel'
 import ImageCarousel2 from './ImageCarousel2'
+import ItemForm from './ItemForm'
 
 function App() {
   const [items, setItems] = useState([]);
@@ -41,7 +42,8 @@ function App() {
         <Route path="/itemlist" element={<ItemList />} />
         <Route path="/items/:id" element={<ItemDetails />} />
         <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
-        <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} />
+        {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
+        <Route path="/itemform" element={<ItemForm />} />
       </Routes>
     </div>
   );
