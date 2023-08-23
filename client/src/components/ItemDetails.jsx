@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Card, CardMedia, CardContent, Typography, Box, Container } from "@mui/material";
 import StarRating from './StarRating.jsx'
 import ImageCarousel from './ImageCarousel'
-import ImageCarousel2 from './ImageCarousel2'
+import DeleteItemButton from './DeleteItemButton.jsx'
 
 
 export default function ItemDetails() {
@@ -35,22 +35,26 @@ export default function ItemDetails() {
     const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
   
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <ImageCarousel images={imageUrls} />
-
-                <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
-                    <Typography variant="h5" color="textSecondary">
-                    ${itemData.price}
-                    <br></br>
-                    <StarRating value={itemData.average_rating}/>
-                    </Typography>
-                </Box>
-                </CardContent>
-        </Container>
-
-
-    );
+      <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <ImageCarousel images={imageUrls} />
+  
+          <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
+                  
+                  <Box mb={2}> {/* Adding margin bottom */}
+                      <Typography variant="h5" color="textSecondary">${itemData.price}</Typography>
+                  </Box>
+                  
+                  <Box mb={2}> {/* Adding margin bottom */}
+                      <StarRating value={itemData.average_rating}/>
+                  </Box>
+  
+                  <DeleteItemButton />
+  
+              </Box>
+          </CardContent>
+      </Container>
+  ); 
   }
   
