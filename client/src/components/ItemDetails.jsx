@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardMedia, CardContent, Typography, Box, Container } from "@mui/material";
 import StarRating from './StarRating.jsx'
 import ImageCarousel from './ImageCarousel'
 import DeleteItemButton from './DeleteItemButton.jsx'
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 
 
 export default function ItemDetails() {
     const [itemData, setItemData] = useState(null);
     const { id } = useParams();
+
+
+    const navigate = useNavigate();
   
     useEffect(() => {
       const fetchData = async () => {
@@ -37,6 +43,7 @@ export default function ItemDetails() {
         if (response.ok) {
             console.log('Item deleted successfully');
             // You can also navigate the user back to a listing page or inform them of successful deletion
+            navigate('/')
         } else {
             const data = await response.json();
             console.error('Error deleting item:', data.error);
