@@ -20,7 +20,7 @@ export default function ItemCard({item}) {
    
   return (
     <Link to={`/items/${item.id}`}>
-      <Card sx={{ maxWidth: 545, minHeight: 400, m: 2, border: '2px solid black' }}> {/* Increased maxWidth and minHeight */}
+      <Card sx={{ maxWidth: 545, minHeight: 400, m: 2, borderRadius: '16px'}}> {/* Increased maxWidth and minHeight */}
         <CardActionArea>
           <CardMedia
             component="img"

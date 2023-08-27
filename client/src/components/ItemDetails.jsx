@@ -9,7 +9,7 @@ import { Alert } from 'bootstrap';
 
 
 
-export default function ItemDetails({setOpenSnackbar}) {
+export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
     const [itemData, setItemData] = useState(null);
     const { id } = useParams();
     // const [deleteMessage, setDeleteMessage] = useState(false)
@@ -44,7 +44,8 @@ export default function ItemDetails({setOpenSnackbar}) {
         if (response.ok) {
             console.log('Item deleted successfully');
             // You can also navigate the user back to a listing page or inform them of successful deletio
-            
+            console.log(itemData)
+            updateStateWhenDelete(itemData); 
             setOpenSnackbar(true);
             navigate('/');
  
