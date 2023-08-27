@@ -34,7 +34,7 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
       return <div>Loading...</div>;
     }
 
-  // handles delete item 
+  // Delete requests 
   const handleDeleteItem = async () => {
     try {
         const response = await fetch(`/api/items/${id}`, {
@@ -57,17 +57,8 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
         console.error('Fetch error:', error);
     }
   };
-
-
-  
- 
- 
-
     // Parse the image URLs from a string to an array
     const imageUrls = JSON.parse(itemData.image);
-  
-    // Use the first image URL if available
-    const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
   
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>

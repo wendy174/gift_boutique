@@ -19,6 +19,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
+  // Updates local state when with delete item request
   const updateStateWhenDelete = (itemData) => { 
       const newItems = items.filter(item => item.id !== itemData.id);
       setItems(newItems)
@@ -38,15 +39,13 @@ function App() {
     fetchData(); 
   }, []); 
 
-  // SnackBar
+  // alertbar 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
     setOpenSnackbar(false);
   };
-
- 
 
 
 
