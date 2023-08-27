@@ -12,9 +12,12 @@ import ItemDetails from "./ItemDetails";
 import ImageCarousel from './ImageCarousel'
 import ImageCarousel2 from './ImageCarousel2'
 import ItemForm from './ItemForm'
+import AlertBar from './AlertBar.jsx'
+
 
 function App() {
   const [items, setItems] = useState([]);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
 
   // get request to get all items 
@@ -31,6 +34,13 @@ function App() {
     fetchData(); 
   }, []); 
 
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
+
 
 
   return (
@@ -40,11 +50,13 @@ function App() {
       <Routes>
         <Route path="/" element={<ItemPage items={items} />} />
         <Route path="/itemlist" element={<ItemList />} />
-        <Route path="/items/:id" element={<ItemDetails />} />
+        <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} />} />
         <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
         {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
         <Route path="/itemform" element={<ItemForm />} />
+        {/* <Route path="/alert" element={<AlertBar />} /> */}
       </Routes>
+      <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
     </div>
   );
 }

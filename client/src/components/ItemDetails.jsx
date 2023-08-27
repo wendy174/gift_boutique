@@ -4,18 +4,18 @@ import { Card, CardMedia, CardContent, Typography, Box, Container } from "@mui/m
 import StarRating from './StarRating.jsx'
 import ImageCarousel from './ImageCarousel'
 import DeleteItemButton from './DeleteItemButton.jsx'
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import AlertBar from './AlertBar.jsx'
+import { Alert } from 'bootstrap';
 
 
 
-export default function ItemDetails() {
+export default function ItemDetails({setOpenSnackbar}) {
     const [itemData, setItemData] = useState(null);
     const { id } = useParams();
-
-
+    // const [deleteMessage, setDeleteMessage] = useState(false)
     const navigate = useNavigate();
-  
+
+// Fetch Request for individual items 
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -26,14 +26,15 @@ export default function ItemDetails() {
           console.error('Error:', error);
         }
       };
-  
       fetchData();
     }, [id]);
   
+  // Loading message 
     if (!itemData) {
       return <div>Loading...</div>;
     }
 
+  // handles delete item 
   const handleDeleteItem = async () => {
     try {
         const response = await fetch(`/api/items/${id}`, {
@@ -42,8 +43,11 @@ export default function ItemDetails() {
 
         if (response.ok) {
             console.log('Item deleted successfully');
-            // You can also navigate the user back to a listing page or inform them of successful deletion
-            navigate('/')
+            // You can also navigate the user back to a listing page or inform them of successful deletio
+            
+            setOpenSnackbar(true);
+            navigate('/');
+ 
         } else {
             const data = await response.json();
             console.error('Error deleting item:', data.error);
@@ -52,7 +56,10 @@ export default function ItemDetails() {
         console.error('Fetch error:', error);
     }
   };
+
+
   
+ 
  
 
     // Parse the image URLs from a string to an array
@@ -64,7 +71,6 @@ export default function ItemDetails() {
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <ImageCarousel images={imageUrls} />
-
                 <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
