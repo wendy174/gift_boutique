@@ -4,9 +4,7 @@ import { Card, CardMedia, CardContent, Typography, Box, Container } from "@mui/m
 import StarRating from './StarRating.jsx'
 import ImageCarousel from './ImageCarousel'
 import DeleteItemButton from './DeleteItemButton.jsx'
-import AlertBar from './AlertBar.jsx'
-import { Alert } from 'bootstrap';
-
+import Review from './Review.jsx'
 
 
 export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
@@ -61,7 +59,8 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
     const imageUrls = JSON.parse(itemData.image);
   
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div>
+          <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <ImageCarousel images={imageUrls} />
                 <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -77,7 +76,11 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
                     </Typography>
                 </Box>
                 </CardContent>
-        </Container>
+          </Container>
+          <Box sx={{ marginTop: '10rem' }}>
+            <Review reviews={itemData.reviews || []} />
+          </Box>
+      </div>
 
 
     );
