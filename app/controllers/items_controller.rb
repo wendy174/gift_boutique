@@ -13,19 +13,9 @@ class ItemsController < ApplicationController
 
     def show 
         item = find_item
-        serialized_item = ActiveModelSerializers::SerializableResource.new(item).as_json
-        serialized_reviews = item.reviews.map do |review|
-          {
-            comment: review.comment,
-            rating: review.rating,
-            customer: {
-              first_name: review.customer.first_name,
-              last_name: review.customer.last_name
-            }
-          }
-        end
-        render json: serialized_item.merge(reviews: serialized_reviews)
-      end
+        render json: item, include: ['review', 'reviews.customer']
+    end 
+
 
     def update 
         item = find_item 
