@@ -8,13 +8,24 @@ class ItemsController < ApplicationController
 
     def create 
         item = Item.create(item_params)
-        render json: item, status: created 
+        render json: item,status: created 
     end
 
     def show 
-        item = find_item 
-        render json: item, include: :reviews 
-    end
+        item = find_item
+        serialized_item = ActiveModelSerializers::SerializableResource.new(item).as_json
+        serialized_reviews = item.reviews.map do |review|
+          {
+            comment: review.comment,
+            rating: review.rating,
+            customer: {
+              first_name: review.customer.first_name,
+              last_name: review.customer.last_name
+            }
+          }
+        end
+        render json: serialized_item.merge(reviews: serialized_reviews)
+      end
 
     def update 
         item = find_item 

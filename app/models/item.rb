@@ -9,4 +9,5 @@ class Item < ApplicationRecord
     def average_rating ## round to nearest whole number 
         reviews.average(:rating).to_f.round
     end
+
 end
