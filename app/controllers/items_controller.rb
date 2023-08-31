@@ -37,7 +37,8 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-        params.permit(:name, :price, :image, :quantity, :category, :seller_id )
+        params.require(:item).permit(:name, :price, :quantity, :category, :seller_id, image: [])
+
     end
 
     def render_not_found_response

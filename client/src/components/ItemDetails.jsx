@@ -56,7 +56,8 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
     }
   };
     // Parse the image URLs from a string to an array
-    const imageUrls = JSON.parse(itemData.image);
+    const imageUrls = itemData.image;
+    console.log(itemData.image)
   
     return (
       <div>
