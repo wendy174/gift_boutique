@@ -47,6 +47,11 @@ function App() {
     setOpenSnackbar(false);
   };
 
+  // handles part of post request in ItemForm 
+  const addNewItem = (myItem) => { 
+    setItems([...items, myItem])
+  }
+
 
 
   return (
@@ -59,7 +64,7 @@ function App() {
         <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
         <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
         {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
-        <Route path="/itemform" element={<ItemForm />} />
+        <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
       </Routes>
       <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
     </div>
