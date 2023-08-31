@@ -13,11 +13,10 @@ export default function ItemCard({item}) {
 
 // logic to render first image:     
 // Parse the image URLs from a string to an array
-  const imageUrls = JSON.parse(item.image);
+// const imageUrls = JSON.parse(item.image); // item.image should already be an array
+// const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
+console.log(item.image[0])
 
-// Use the first image URL if available
-  const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
-   
   return (
     <Link to={`/items/${item.id}`}>
       <Card sx={{ maxWidth: 545, minHeight: 400, m: 2, borderRadius: '16px'}}> {/* Increased maxWidth and minHeight */}
@@ -26,7 +25,7 @@ export default function ItemCard({item}) {
             component="img"
             height="300" 
             width="400" 
-            image={imageUrl}
+            image={item.image[0]}
             alt={item.name}
             sx={{ objectFit: "cover" }} 
           />

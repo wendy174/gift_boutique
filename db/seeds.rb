@@ -46,7 +46,7 @@ I1 = Item.create!(
             "https://thekawaiishoppu.com/cdn/shop/products/S157cbe723f3f4e668c31c4528cc90f31s_460x.jpg?v=1680367149"], 
     quantity: Faker::Number.between(from: 1, to: 100), 
     category: "stationery", 
-    seller_id: s1.id
+    seller_id: Seller.all.sample.id
 )
 
 I2 = Item.create!(
