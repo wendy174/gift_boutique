@@ -27,6 +27,7 @@ export default function ButtonAppBar() {
           </Typography>
           <Button color="inherit" component={Link} to='/'>Home</Button>
           <Button color="inherit" component={Link} to="/itemform">Form</Button>
+          <Button color="inherit" component={Link} to='/cart'>Cart</Button>
         </Toolbar>
       </AppBar>
     </Box>

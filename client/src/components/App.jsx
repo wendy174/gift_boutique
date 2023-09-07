@@ -13,6 +13,8 @@ import ImageCarousel from './ImageCarousel'
 import ImageCarousel2 from './ImageCarousel2'
 import ItemForm from './ItemForm'
 import AlertBar from './AlertBar.jsx'
+import Cart from './Cart'
+import { CartProvider } from './CartContext';
 
 
 function App() {
@@ -55,19 +57,22 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Header className='header' />
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<ItemPage items={items} />} />
-        <Route path="/itemlist" element={<ItemList />} />
-        <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
-        <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
-        {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
-        <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
-      </Routes>
-      <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
-    </div>
+    <CartProvider>
+      <div className="App">
+        <Header className='header' />
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<ItemPage items={items} />} />
+          <Route path="/itemlist" element={<ItemList />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
+          <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
+          {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
+          <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
+        </Routes>
+        <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
+      </div>
+    </CartProvider>
   );
 }
 

@@ -5,6 +5,10 @@ import StarRating from './StarRating.jsx'
 import ImageCarousel from './ImageCarousel'
 import DeleteItemButton from './DeleteItemButton.jsx'
 import Review from './Review.jsx'
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useCart } from './CartContext';
 
 
 export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
@@ -12,6 +16,7 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
     const { id } = useParams();
     // const [deleteMessage, setDeleteMessage] = useState(false)
     const navigate = useNavigate();
+    const { addToCart } = useCart(); 
 
 // Fetch Request for individual items 
     useEffect(() => {
@@ -42,7 +47,6 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
         if (response.ok) {
             console.log('Item deleted successfully');
             // You can also navigate the user back to a listing page or inform them of successful deletio
-            console.log(itemData)
             updateStateWhenDelete(itemData); 
             setOpenSnackbar(true);
             navigate('/');
@@ -57,7 +61,6 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
   };
     // Parse the image URLs from a string to an array
     const imageUrls = itemData.image;
-    console.log(itemData.image)
   
     return (
       <div>
@@ -74,6 +77,11 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
                     <br> 
                     </br>
                     <DeleteItemButton onClick={handleDeleteItem}/>
+                    <br>
+                    </br>
+                    <Button variant="contained" size="large" startIcon={<AddShoppingCartIcon />} onClick= {() => addToCart(itemData)}>
+                      Add to Cart
+                    </Button>
                     </Typography>
                 </Box>
                 </CardContent>
