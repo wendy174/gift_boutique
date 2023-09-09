@@ -14,14 +14,33 @@ export const CartProvider = ({ children }) => {
 
   console.log(cartItems)
 
-  const addToCart = (item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+  const addToCart = async (item) => {
+    const response = await fetch(`/carts/add_item`, { // Adjust endpoint as needed
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ item_id: item.id, quantity: 1 }), // Replace 1 with desired quantity
+    });
+  
+    if (response.ok) {
+      const updatedCart = await response.json();
+      setCartItems(updatedCart.cartItems); // Assuming `updatedCart.cartItems` holds the new cart state
+    }
   };
+  
 
-  const removeFromCart = (itemId) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  const removeFromCart = async (itemId) => {
+    const response = await fetch(`/carts/remove_item`, { // Adjust endpoint as needed
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ item_id: itemId }),
+    });
+  
+    if (response.ok) {
+      const updatedCart = await response.json();
+      setCartItems(updatedCart.cartItems);
+    }
   };
-
+  
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
