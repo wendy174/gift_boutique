@@ -3,12 +3,15 @@ class CartsController < ApplicationController
         carts = Cart.all
         render json: carts
     end
-    
+
     def add_item
-        @cart = current_cart # Assume you have a method that retrieves the current cart
+        @cart = current_cart 
         @item = Item.find(params[:item_id])
         @cart.add_item(@item)
         
-        redirect_to cart_path(@cart)
-    end
+        render json: @cart, status: :ok 
+      end
+      
+    
+    
 end
