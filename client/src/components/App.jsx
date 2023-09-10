@@ -10,10 +10,10 @@ import CustomCard from "./CustomCard";
 import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import ItemDetails from "./ItemDetails";
 import ImageCarousel from './ImageCarousel'
-import ImageCarousel2 from './ImageCarousel2'
 import ItemForm from './ItemForm'
 import AlertBar from './AlertBar.jsx'
-import Cart from './Cart'
+import Login from './Login.jsx'
+// import Cart from './Cart'
 import { CartProvider } from './CartContext';
 
 
@@ -64,11 +64,12 @@ function App() {
         <Routes>
           <Route path="/" element={<ItemPage items={items} />} />
           <Route path="/itemlist" element={<ItemList />} />
-          <Route path="/cart" element={<Cart />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
           <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
           {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
           <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
         <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
       </div>

@@ -143,8 +143,6 @@ I10 = Item.create!(
 
 
 
-
-
 # customers 
 
 
@@ -152,24 +150,21 @@ c1 = Customer.create!(
     first_name: Faker::Name.first_name, 
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email, 
-    profile_pic: "", 
-    password: '123'
+    profile_pic: ""
 )
 
 c2 = Customer.create!(
     first_name: Faker::Name.first_name, 
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email, 
-    profile_pic: "", 
-    password: '123'
+    profile_pic: ""
 )
 
 c3 = Customer.create!(
     first_name: Faker::Name.first_name, 
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email, 
-    profile_pic: "", 
-    password: '123'
+    profile_pic: ""
 )
 
 # nothing for orderitems, order, cart, cart items 
@@ -189,76 +184,6 @@ customer_id = Faker::Number.between(from: 1, to: 3)
     customer_id: Customer.all.sample.id
     )
 end
-
-# 20.times do 
-#     Favorite.create!(
-#         post_id: Post.all().sample().id, 
-#         influencer_id: Influencer.all().sample().id
-#     )
-# end 
-
-# r1 = Review.create!(
-#     rating: Faker::Number.between(from: 1, to: 5), 
-#     comment: Faker::Lorem.sentence, 
-#     item_id: Item.all.sample.id, 
-#     customer_id: Customer.all.sample.id
-# )
-
-
-# r3 = Review.create!(
-#     rating: Faker::Number.between(from: 1, to: 5), 
-#     comment: Faker::Lorem.sentence, 
-#     item_id: Item.all.sample.id, 
-#     customer_id: Customer.all.sample.id
-# )
-
-
-# r4 = Review.create!(
-#     rating: Faker::Number.between(from: 1, to: 5), 
-#     comment: Faker::Lorem.sentence, 
-#     item_id: Item.all.sample.id, 
-#     customer_id: Customer.all.sample.id
-# )
-
-
-# r5 = Review.create!(
-#     rating: Faker::Number.between(from: 1, to: 5), 
-#     comment: Faker::Lorem.sentence, 
-#     item_id: Item.all.sample.id, 
-#     customer_id: Customer.all.sample.id
-# )
-
-
-# r6 = Review.create!(
-#     rating: Faker::Number.between(from: 1, to: 5), 
-#     comment: Faker::Lorem.sentence, 
-#     item_id: Item.all.sample.id, 
-#     customer_id: Customer.all.sample.id
-# )
- 
-
-# r7 = Review.create!(
-#     rating: Faker::Number.between(from: 1, to: 5), 
-#     comment: Faker::Lorem.sentence, 
-#     item_id: Item.all.sample.id, 
-#     customer_id: Customer.all.sample.id
-# )
-
-
-# r8 = Review.create!(
-#     rating: Faker::Number.between(from: 1, to: 5), 
-#     comment: Faker::Lorem.sentence, 
-#     item_id: Item.all.sample.id, 
-#     customer_id: Customer.all.sample.id
-# ) 
-
-# 20.times do 
-#     Favorite.create!(
-#         post_id: Post.all().sample().id, 
-#         influencer_id: Influencer.all().sample().id
-#     )
-# end 
-
 
 puts 'Done seeding'
 
