@@ -1,5 +1,5 @@
-import { auth } from "./FireBase.jsx";
-import { createUserWithEmailAndPassword } from "firebase/auth"; 
+import { auth, googleProvider, githubProvider } from "./FireBase.jsx";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth"; 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -29,11 +29,29 @@ export default function SignIn() {
   const navigate = useNavigate()
   const [errors, setErrors] = useState([])
 
-//   console.log(auth?.currentUser?.email)
+  console.log(auth?.currentUser?.email)
 
-  const handleSignIn = async () => { 
+  const handleSignIn = async (Email) => { 
+    e.preventDefault();
     try { 
     await createUserWithEmailAndPassword(auth, email, password)
+    } catch (err) { 
+        console.error(err)
+    }
+}
+
+const signInWithGoogle = async () => { 
+    try { 
+    await signInWithPopup(auth, googleProvider)
+    } catch (err) { 
+        console.error(err)
+    }
+}
+
+
+const signInWithGit = async () => { 
+    try { 
+    await signInWithPopup(auth, githubProvider)
     } catch (err) { 
         console.error(err)
     }
@@ -54,7 +72,7 @@ export default function SignIn() {
             alignItems: 'center',
             padding: '16px', 
             border: '1px solid #ddd', 
-          borderRadius: '8px' 
+            borderRadius: '8px' 
           }}
         
         >
@@ -64,7 +82,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onClick= {handleSignIn} noValidate sx={{ mt: 1 }}>
+          <Box component="form"  noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -101,26 +119,27 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onSubmit={handleSignIn}
             >
               Sign In
             </Button>
             <Button
                 variant="outlined"
-                color="primary"  // or any other standard color
+                color="primary"  
                 fullWidth
                 startIcon={<GoogleIcon />}
-                // use startIcon instead of startDecorator
+                onClick = {signInWithGoogle}
                 >
                 Sign in with Google
             </Button>
             <Button
                 variant="outlined"
-                color="primary"  // or any other standard color
+                color="primary"  
                 fullWidth
                 startIcon={<GithubIcon />}
-              // use startIcon instead of startDecorator
+                onClick = {signInWithGit}
                 >
-                Sign in with Google
+                Sign in with Github
             </Button>
             <Grid container>
               <Grid item xs>
