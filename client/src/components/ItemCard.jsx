@@ -15,7 +15,7 @@ export default function ItemCard({item}) {
 // Parse the image URLs from a string to an array
 // const imageUrls = JSON.parse(item.image); // item.image should already be an array
 // const imageUrl = imageUrls && imageUrls.length > 0 ? imageUrls[0] : "";
-console.log(item.image[0])
+
 
   return (
     <Link to={`/items/${item.id}`}>

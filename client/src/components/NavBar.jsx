@@ -23,9 +23,6 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
           <Button color="inherit" component={Link} to='/'>Home</Button>
           <Button color="inherit" component={Link} to="/itemform">Form</Button>
           <Button color="inherit" component={Link} to='/cart'>Cart</Button>

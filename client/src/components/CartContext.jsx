@@ -12,7 +12,6 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  console.log(cartItems)
 
   const addToCart = async (item) => {
     const response = await fetch(`/carts/add_item`, { // Adjust endpoint as needed

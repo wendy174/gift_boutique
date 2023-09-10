@@ -27,7 +27,6 @@ export default function ItemForm({addNewItem}) {
     seller_id: 1
   })
 
-  console.log(newItem.image)
 
   // dynamically capture input fields 
   const updateField = (e) => {
