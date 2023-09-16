@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_09_220420) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_16_175622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_220420) do
     t.string "profile_pic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firebase_uid"
+    t.index ["firebase_uid"], name: "index_customers_on_firebase_uid", unique: true
   end
 
   create_table "items", force: :cascade do |t|

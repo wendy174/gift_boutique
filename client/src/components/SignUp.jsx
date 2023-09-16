@@ -20,16 +20,55 @@ const theme = createTheme();
 
 export default function SignUp() {
 
-  const [firstName, setFirstName] = useState(''); 
-  const [lastName, setLastName] = useState(''); 
-  const [email, setEmail] = useState(''); 
-  const [password, setPassword] = useState(''); 
-  const navigate = useNavigate(); 
-  const [errors, setErrors] = useState([]); 
+const [newCustomer, setNewCustomer] = useState({ 
+    first_name:'',
+    last_name: '', 
+    email: '', 
+    password:'', 
+})
+const navigate = useNavigate(); 
+const [errors, setErrors] = useState([]); 
+
+
+const handleChange = (e) => {
+  setNewCustomer({...newCustomer, [e.target.name]: e.target.value})
+}
+
+const handleSubmit = async (e) => { 
+  e.preventDefault();
+  
+  // First, sign up the user using Firebase
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, newCustomer.email, newCustomer.password);
+    const user = userCredential.user;
+    
+    // Second, make a POST request to your API to save the user in your database
+    const resp = await fetch('/api/customers', { 
+      method: 'POST', 
+      headers: { 
+        "Content-Type": 'application/json', 
+      }, 
+      body: JSON.stringify({
+        ...newCustomer,
+        firebase_uid: user.uid  // The uid provided by Firebase
+      })
+    });
+
+    if (!resp.ok) {
+      throw new Error(`HTTP error! status: ${resp.status}`);
+    }
+
+    const myCustomer = await resp.json();
+    console.log(myCustomer);
+  } catch(error) {
+    console.error('An error occurred:', error);
+    setErrors([...errors, error.message]); // Append the new error to the existing errors
+  }
+}
+
 
 
   return (
-
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -51,29 +90,29 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <Box component="form"  noValidate sx={{ mt: 1 }}>
+          <Box component="form"  noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
           <TextField
               margin="normal"
               required
               fullWidth
-              id="firstName"
+              id="first_name"
               label="First Name"
-              name="firstName"
+              name="first_name"
               autoComplete="email"
               autoFocus
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={newCustomer.first_name}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              id="lastName"
+              id="last_name"
               label="Last Name"
-              name="lastName"
+              name="last_name"
               autoFocus
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={newCustomer.last_name}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -84,8 +123,8 @@ export default function SignUp() {
               name="email"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={newCustomer.email}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -96,8 +135,8 @@ export default function SignUp() {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={newCustomer.password}
+              onChange={handleChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -119,4 +158,5 @@ export default function SignUp() {
       </Container>
     </ThemeProvider>
   );
+
 }
