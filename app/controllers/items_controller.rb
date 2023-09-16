@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+    # skip_before_action :authorize, only: [:index, :show]
 
     def index 
         items = Item.all
@@ -41,9 +41,6 @@ class ItemsController < ApplicationController
 
     end
 
-    def render_not_found_response
-        render json: { error: "Item not found" }, status: :not_found
-    end
     
 
 end 

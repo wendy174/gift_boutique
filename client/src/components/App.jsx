@@ -13,6 +13,7 @@ import ImageCarousel from './ImageCarousel'
 import ItemForm from './ItemForm'
 import AlertBar from './AlertBar.jsx'
 import Login from './Login.jsx'
+import SignUp from './SignUp.jsx'
 // import Cart from './Cart'
 import { CartProvider } from './CartContext';
 
@@ -68,8 +69,10 @@ function App() {
           <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
           <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
           {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
+
           <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/signup" element={<SignUp/>} />
         </Routes>
         <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
       </div>
