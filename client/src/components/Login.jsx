@@ -29,33 +29,90 @@ export default function SignIn() {
   const navigate = useNavigate()
   const [errors, setErrors] = useState([])
 
-  console.log(auth?.currentUser?.email)
+  // console.log(auth?.currentUser?.email)
 
-  const handleSignIn = async (Email) => { 
-    e.preventDefault();
-    try { 
-    await createUserWithEmailAndPassword(auth, email, password)
-    } catch (err) { 
-        console.error(err)
+//   const handleSignIn = async (e) => { 
+//     e.preventDefault();
+//     try { 
+//     await createUserWithEmailAndPassword(auth, email, password)
+//     } catch (err) { 
+//         console.error(err)
+//     }
+// }
+
+// const signInWithGoogle = async () => { 
+//     try { 
+//     await signInWithPopup(auth, googleProvider)
+//     } catch (err) { 
+//         console.error(err)
+//     }
+// }
+
+
+// const signInWithGit = async () => { 
+//     try { 
+//     await signInWithPopup(auth, githubProvider)
+//     } catch (err) { 
+//         console.error(err)
+//     }
+// }
+
+
+const handleBackendLookup = async (user) => {
+  const idToken = await user.getIdToken();
+  
+  let first_name = null;
+  let last_name = null;
+
+  if (user.displayName) {
+    [first_name, last_name] = user.displayName.split(' ');
+  }
+
+  fetch("/api/customers/create_or_find", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${idToken}`
+    },
+    body: JSON.stringify({
+      firebase_uid: user.uid,
+      email: user.email,
+      first_name,
+      last_name,
+      profile_pic: user.photoURL,
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.customer) {
+      console.log(data.customer)
+      // Customer exists or was just created.
+      // Update the state or navigate the user to their profile page
     }
-}
+  })
+  .catch(error => {
+    console.error("Error interacting with the backend:", error);
+  });
+};
 
-const signInWithGoogle = async () => { 
-    try { 
-    await signInWithPopup(auth, googleProvider)
-    } catch (err) { 
-        console.error(err)
-    }
-}
+const signInWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    await handleBackendLookup(result.user);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-
-const signInWithGit = async () => { 
-    try { 
-    await signInWithPopup(auth, githubProvider)
-    } catch (err) { 
-        console.error(err)
-    }
-}
+const handleSignIn = async (e) => {
+  e.preventDefault();
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    await handleBackendLookup(userCredential.user);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 
@@ -119,7 +176,7 @@ const signInWithGit = async () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onSubmit={handleSignIn}
+              onClick={handleSignIn}
             >
               Sign In
             </Button>
@@ -132,7 +189,7 @@ const signInWithGit = async () => {
                 >
                 Sign in with Google
             </Button>
-            <Button
+            {/* <Button
                 variant="outlined"
                 color="primary"  
                 fullWidth
@@ -140,7 +197,7 @@ const signInWithGit = async () => {
                 onClick = {signInWithGit}
                 >
                 Sign in with Github
-            </Button>
+            </Button> */}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
