@@ -16,11 +16,25 @@ import Login from './Login.jsx'
 import SignUp from './SignUp.jsx'
 // import Cart from './Cart'
 import { CartProvider } from './CartContext';
+import { UserProvider, useUser } from './UserContext.jsx'; 
+import { onAuthStateChanged } from 'firebase/auth';
+
+
 
 
 function App() {
   const [items, setItems] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (customer) => {
+  //     setCurrentCustomer(customer);
+  //   });
+
+  //   return () => unsubscribe();
+  // }, [setCurrentCustomer]);
+
 
   // Updates local state when with delete item request
   const updateStateWhenDelete = (itemData) => { 
@@ -58,6 +72,7 @@ function App() {
 
 
   return (
+    <UserProvider>
     <CartProvider>
       <div className="App">
         <Header className='header' />
@@ -77,6 +92,7 @@ function App() {
         <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
       </div>
     </CartProvider>
+    </UserProvider>
   );
 }
 

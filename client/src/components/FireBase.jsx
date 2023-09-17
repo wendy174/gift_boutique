@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth"; 
 
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyAyzMQ8QBPCSEkEf7MnYMY3dHivz2OmcKg",
   authDomain: "giftboutique-90376.firebaseapp.com",
