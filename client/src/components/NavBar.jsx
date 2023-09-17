@@ -7,13 +7,22 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom'; 
+import { useUser } from './UserContext';
+
 
 
 export default function ButtonAppBar() {
+
+  const { currentUser } = useUser();
+  console.log(currentUser)
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }}>r
       <AppBar position="static">
         <Toolbar>
+        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+              <span> Welcome {currentUser ? currentUser.first_name : "Guest"}!</span>
+        </Box>
           <IconButton
             size="large"
             edge="start"
@@ -27,6 +36,7 @@ export default function ButtonAppBar() {
           <Button color="inherit" component={Link} to="/itemform">Form</Button>
           <Button color="inherit" component={Link} to='/cart'>Cart</Button>
           <Button color="inherit" component={Link} to='/login'>Login</Button>
+          <Button color="inherit" component={Link} to='/signup'>Sign Up</Button>
         </Toolbar>
       </AppBar>
     </Box>

@@ -15,6 +15,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState} from 'react'
 import { useNavigate, Link } from "react-router-dom";
+import { useUser } from './UserContext';
+
 
 const theme = createTheme();
 
@@ -28,6 +30,9 @@ const [newCustomer, setNewCustomer] = useState({
 })
 const navigate = useNavigate(); 
 const [errors, setErrors] = useState([]); 
+const { currentUser, updateCurrentUser } = useUser();
+
+
 
 
 const handleChange = (e) => {
@@ -59,7 +64,16 @@ const handleSubmit = async (e) => {
     }
 
     const myCustomer = await resp.json();
-    console.log(myCustomer);
+    // Update the current customer in App.js
+    // Combine the user data from Firebase and Rails
+    const completeUser = {
+      ...myCustomer,
+      ...user
+    };
+    updateCurrentUser(completeUser);
+    navigate('/');
+
+   
   } catch(error) {
     console.error('An error occurred:', error);
     setErrors([...errors, error.message]); // Append the new error to the existing errors
