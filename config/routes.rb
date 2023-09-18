@@ -8,11 +8,7 @@ Rails.application.routes.draw do
     end
   end
   resources :reviews
-  resources :customers do
-    collection do
-      post 'create_or_find'
-    end
-  end
+  resources :customers 
   resources :sellers
   resources :items
   get '/hello', to: 'application#hello_world'

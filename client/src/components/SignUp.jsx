@@ -32,9 +32,6 @@ const navigate = useNavigate();
 const [errors, setErrors] = useState([]); 
 const { currentUser, updateCurrentUser } = useUser();
 
-
-
-
 const handleChange = (e) => {
   setNewCustomer({...newCustomer, [e.target.name]: e.target.value})
 }
@@ -59,6 +56,9 @@ const handleSubmit = async (e) => {
       })
     });
 
+    console.log("Firebase UID:", user.uid);
+
+
     if (!resp.ok) {
       throw new Error(`HTTP error! status: ${resp.status}`);
     }
@@ -70,8 +70,10 @@ const handleSubmit = async (e) => {
       ...myCustomer,
       ...user
     };
+    
     updateCurrentUser(completeUser);
-    navigate('/');
+    console.log(completeUser)
+    // navigate('/');
 
    
   } catch(error) {
@@ -79,7 +81,6 @@ const handleSubmit = async (e) => {
     setErrors([...errors, error.message]); // Append the new error to the existing errors
   }
 }
-
 
 
   return (

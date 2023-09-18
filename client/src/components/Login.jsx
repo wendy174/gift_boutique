@@ -1,5 +1,5 @@
 import { auth, googleProvider, githubProvider } from "./FireBase.jsx";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth"; 
+import { browserSessionPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, setPersistence } from "firebase/auth"; 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState} from 'react'
 import { useNavigate, Link } from "react-router-dom";
 import GoogleIcon from './GoogleIcon';
-import GithubIcon from './GithubIcon.jsx'
+import { useUser } from './UserContext';
 
 
 
@@ -28,77 +28,17 @@ export default function SignIn() {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const [errors, setErrors] = useState([])
+  const { currentUser, updateCurrentUser } = useUser();
 
   // console.log(auth?.currentUser?.email)
-
-//   const handleSignIn = async (e) => { 
-//     e.preventDefault();
-//     try { 
-//     await createUserWithEmailAndPassword(auth, email, password)
-//     } catch (err) { 
-//         console.error(err)
-//     }
-// }
-
-// const signInWithGoogle = async () => { 
-//     try { 
-//     await signInWithPopup(auth, googleProvider)
-//     } catch (err) { 
-//         console.error(err)
-//     }
-// }
-
-
-// const signInWithGit = async () => { 
-//     try { 
-//     await signInWithPopup(auth, githubProvider)
-//     } catch (err) { 
-//         console.error(err)
-//     }
-// }
-
-
-const handleBackendLookup = async (user) => {
-  const idToken = await user.getIdToken();
   
-  let first_name = null;
-  let last_name = null;
 
-  if (user.displayName) {
-    [first_name, last_name] = user.displayName.split(' ');
-  }
+  
 
-  fetch("/api/customers/create_or_find", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${idToken}`
-    },
-    body: JSON.stringify({
-      firebase_uid: user.uid,
-      email: user.email,
-      first_name,
-      last_name,
-      profile_pic: user.photoURL,
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.customer) {
-      console.log(data.customer)
-      // Customer exists or was just created.
-      // Update the state or navigate the user to their profile page
-    }
-  })
-  .catch(error => {
-    console.error("Error interacting with the backend:", error);
-  });
-};
 
 const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
-    await handleBackendLookup(result.user);
   } catch (error) {
     console.error(error);
   }
@@ -106,11 +46,33 @@ const signInWithGoogle = async () => {
 
 const handleSignIn = async (e) => {
   e.preventDefault();
+
+
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    await handleBackendLookup(userCredential.user);
+    // Firebase login
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    const resp = await fetch(`/api/customers/${user.uid}`);
+  
+
+
+    if (resp.ok) { 
+
+      const userInfo = await resp.json(); 
+      // Combine Firebase and additional user info
+      const completeUserInfo = { ...user, ...userInfo };
+      console.log(completeUserInfo)
+
+      // Update your app's state with the logged-in user info
+      updateCurrentUser(completeUserInfo);
+    } else {
+      throw new Error('Could not fetch additional user info');
+    }
+
   } catch (error) {
-    console.error(error);
+    console.error('Error during login:', error);
+    setErrors([...errors, error.message]);
   }
 };
 
@@ -138,7 +100,7 @@ const handleSignIn = async (e) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form"  noValidate sx={{ mt: 1 }}>
+          <Box component="form"  noValidate sx={{ mt: 1 }} onSubmit={handleSignIn}>
             <TextField
               margin="normal"
               required
@@ -167,6 +129,7 @@ const handleSignIn = async (e) => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+             {/* {errors.length > 0 && <div>Errors: {errors.join(', ')}</div>} */}
             <Typography component="h3" variant="h6" style={{ color: 'purple', textAlign: 'center'}}>
                 {errors? <div>{errors}</div>:null}
             </Typography>
@@ -188,15 +151,6 @@ const handleSignIn = async (e) => {
                 >
                 Sign in with Google
             </Button>
-            {/* <Button
-                variant="outlined"
-                color="primary"  
-                fullWidth
-                startIcon={<GithubIcon />}
-                onClick = {signInWithGit}
-                >
-                Sign in with Github
-            </Button> */}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
