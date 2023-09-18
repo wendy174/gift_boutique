@@ -52,9 +52,19 @@ class CustomersController < ApplicationController
         render json: customers
     end
 
-    def show 
-        customer = Customer.find(params[:id])
+    # def show 
+    #     customer = Customer.find(params[:id])
+    #     render json: customer
+    # end
+
+    def show
+      # Assuming firebase_uid is used to find the customer
+      customer = Customer.find_by(firebase_uid: params[:id])
+      if customer
         render json: customer
+      else
+        render json: { error: 'Customer not found' }, status: :not_found
+      end
     end
 
     def create # signup 
@@ -71,6 +81,6 @@ class CustomersController < ApplicationController
     private
 
    def customer_params 
-        params.permit(:email, :first_name, :last_name) 
+        params.permit(:first_name, :last_name, :email, :profile_pic, :firebase_uid) 
    end
 end
