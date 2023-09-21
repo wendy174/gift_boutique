@@ -1,15 +1,7 @@
-.header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px; /* Optional: You can set a height for the header */
-  }
+.logo-image {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 400px;  /* Reduced from 300px to 150px */
+  height: auto;  /* Aspect ratio will be maintained */
+}
   
-  .header img {
-    width: 200px; /* You can adjust the width to make the logo smaller */
-    height: auto; /* Keep the aspect ratio of the image */
-  }
-
-  .logo-image {
-    padding-bottom: 60px;
-  }
