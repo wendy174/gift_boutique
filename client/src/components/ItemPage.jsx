@@ -1,4 +1,4 @@
-import ItemList from "./ItemList.jsx"
+import ItemList from "./ItemList.jsx"; 
 
 
 export default function ItemPage({items}) { 

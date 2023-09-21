@@ -11,27 +11,18 @@ import { useUser } from './UserContext';
 
 
 
+
 export default function ButtonAppBar() {
 
   const { currentUser } = useUser();
-  console.log(currentUser)
 
   return (
-    <Box sx={{ flexGrow: 1 }}>r
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ bgcolor: '#b96eaa', boxShadow: 'none' }}>
         <Toolbar>
         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
               <span> Welcome {currentUser ? currentUser.first_name : "Guest"}!</span>
         </Box>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Button color="inherit" component={Link} to='/'>Home</Button>
           <Button color="inherit" component={Link} to="/itemform">Form</Button>
           <Button color="inherit" component={Link} to='/cart'>Cart</Button>

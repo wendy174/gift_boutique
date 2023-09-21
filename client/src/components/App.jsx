@@ -17,24 +17,13 @@ import SignUp from './SignUp.jsx'
 // import Cart from './Cart'
 import { CartProvider } from './CartContext';
 import { UserProvider, useUser } from './UserContext.jsx'; 
-import { onAuthStateChanged } from 'firebase/auth';
-
+import TopBanner from './TopBanner.jsx'; 
 
 
 
 function App() {
   const [items, setItems] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-
-
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (customer) => {
-  //     setCurrentCustomer(customer);
-  //   });
-
-  //   return () => unsubscribe();
-  // }, [setCurrentCustomer]);
-
 
   // Updates local state when with delete item request
   const updateStateWhenDelete = (itemData) => { 
@@ -75,6 +64,7 @@ function App() {
     <UserProvider>
     <CartProvider>
       <div className="App">
+        <TopBanner />
         <Header className='header' />
         <NavBar />
         <Routes>
@@ -83,8 +73,6 @@ function App() {
           {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
           <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
-          {/* <Route path="/imagecarousel2" element={<ImageCarousel2 images={items.image}/>} /> */}
-
           <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp/>} />
