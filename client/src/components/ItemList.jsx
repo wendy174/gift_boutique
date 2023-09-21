@@ -2,7 +2,6 @@
 import ItemCard from "./ItemCard.jsx"
 import Grid from '@mui/material/Grid';
 import "./ItemList.css"
-import CustomCard from "./CustomCard";
 
 
 export default function ItemList({items}) { 
@@ -17,7 +16,6 @@ export default function ItemList({items}) {
                     </Grid>
                 ))}
             </Grid>
-            {/* {items.map(item => <CustomCard item={item} />)} */}
         </div>
     )
 }

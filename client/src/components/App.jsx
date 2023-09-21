@@ -18,6 +18,7 @@ import SignUp from './SignUp.jsx'
 import { CartProvider } from './CartContext';
 import { UserProvider, useUser } from './UserContext.jsx'; 
 import TopBanner from './TopBanner.jsx'; 
+import Footer from './Footer';
 
 
 
@@ -78,6 +79,7 @@ function App() {
           <Route path="/signup" element={<SignUp/>} />
         </Routes>
         <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
+        <Footer />
       </div>
     </CartProvider>
     </UserProvider>
