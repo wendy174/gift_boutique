@@ -64,7 +64,7 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
   
     return (
       <div>
-          <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
             <ImageCarousel images={imageUrls} />
                 <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -86,12 +86,10 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
                 </Box>
                 </CardContent>
           </Container>
-          <Box sx={{ marginTop: '10rem' }}>
+          <Box sx={{ marginTop: '25rem', marginBottom: '5rem' }}>
             <Review reviews={itemData.reviews || []} />
           </Box>
       </div>
-
-
     );
   }
   
