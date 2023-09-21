@@ -9,3 +9,12 @@ body, html {
   margin: 0;
   padding: 0;
 }
+
+.customFooter {
+  background-color: #fbc3d6;
+  padding-top: 100px;
+}
+
+.customFooter .quickLinks {
+  margin-bottom: 100px; /* adjust as needed */
+}
