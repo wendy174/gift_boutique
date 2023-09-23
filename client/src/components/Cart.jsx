@@ -3,12 +3,14 @@ import { useCart } from './CartContext';
 import { Container, Typography, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-// Cart displays items in the cart
+
+// Cart displays items in the cart 
 const Cart = () => {
   const { cartItems, removeFromCart } = useCart();
 
   const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+
 
   if (cartItems.length === 0) {
     return (
@@ -31,7 +33,7 @@ const Cart = () => {
             <ListItem key={index}>
               <ListItemText
                 primary={item.name}
-                secondary={`Price: $${item.price} Quantity: ${item.quantity}`}
+                secondary={`Price: $${item.price}`}
               />
               <ListItemSecondaryAction>
                 <IconButton
@@ -47,12 +49,6 @@ const Cart = () => {
           </>
         ))}
       </List>
-      <Typography variant="h6" align="center" gutterBottom>
-        Total Quantity: {totalQuantity}
-      </Typography>
-      <Typography variant="h6" align="center" gutterBottom>
-        Total Amount: ${totalAmount.toFixed(2)}
-      </Typography>
     </Container>
   );
 };

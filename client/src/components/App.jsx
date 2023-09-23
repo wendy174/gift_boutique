@@ -14,11 +14,11 @@ import ItemForm from './ItemForm'
 import AlertBar from './AlertBar.jsx'
 import Login from './Login.jsx'
 import SignUp from './SignUp.jsx'
-// import Cart from './Cart'
 import { CartProvider } from './CartContext';
 import { UserProvider, useUser } from './UserContext.jsx'; 
 import TopBanner from './TopBanner.jsx'; 
 import Footer from './Footer';
+import Cart from './cart.jsx'; // cart has to be lowercase, maybe has to do with how I originally named the file 
 
 
 
@@ -71,7 +71,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ItemPage items={items} />} />
           <Route path="/itemlist" element={<ItemList />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
+          <Route path="/cart" element={<Cart />} />
           <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
           <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
           <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
