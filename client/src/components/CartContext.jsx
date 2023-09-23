@@ -1,8 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// makes state and all these functions accessable 
-
-
 const CartContext = createContext();
 
 export const useCart = () => {

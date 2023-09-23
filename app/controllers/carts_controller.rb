@@ -4,13 +4,13 @@ class CartsController < ApplicationController
         render json: carts
     end
 
-    def add_item
-        @cart = current_cart 
-        @item = Item.find(params[:item_id])
-        @cart.add_item(@item)
+    # def add_item
+    #     @cart = current_cart 
+    #     @item = Item.find(params[:item_id])
+    #     @cart.add_item(@item)
         
-        render json: @cart, status: :ok 
-      end
+    #     render json: @cart, status: :ok 
+    #   end
       
     
     
