@@ -79,7 +79,11 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
                     <DeleteItemButton onClick={handleDeleteItem}/>
                     <br>
                     </br>
-                    <Button variant="contained" size="large" startIcon={<AddShoppingCartIcon />} onClick= {() => addToCart(itemData)}>
+                    <Button 
+                      variant="contained" 
+                      size="large" 
+                      startIcon={<AddShoppingCartIcon />} onClick= {() => addToCart(itemData)}
+                      sx={{ backgroundColor: '#b96eaa'}} >
                       Add to Cart
                     </Button>
                     </Typography>
