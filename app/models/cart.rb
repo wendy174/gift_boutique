@@ -4,7 +4,7 @@ class Cart < ApplicationRecord
     has_many :items, through: :cart_items
 
 
-    def add_item(item, quantity = 1)
+    def add_item(item, quantity = 1) # how item added to cart 
         # checks to see if cart already has cartitem with the given item.id
         # if it does --> increm quantity of item by 1 
         # if does not, new CartItem is created 
