@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :cart_items
   resources :carts do
-    member do
+    collection do
       post 'add_item'
       post 'remove_item'
     end
