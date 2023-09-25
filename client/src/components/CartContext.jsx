@@ -22,11 +22,13 @@ export const CartProvider = ({ children }) => {
       setCartItems(updatedCart.cartItems);
     } else {
       console.error('Response status:', response.status);
-      const data = await response.text();  // Use .text() in case the response isn't JSON formatted
+      const data = await response.json();
       console.error('Response data:', data);
+
     }
   };
-  
+
+ 
 
   const removeFromCart = async (itemId) => {
     const response = await fetch(`/api/carts/remove_item`, { // Adjust endpoint as needed
@@ -47,3 +49,18 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+
+ // const addToCart = async (item) => {
+  //   const response = await fetch("/api/carts/add_item", { // Adjust endpoint as needed
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ item_id: item.id, quantity: 1 }), // Replace 1 with desired quantity
+  //   });
+  
+  //   if (response.ok) {
+  //     const updatedCart = await response.json();
+  //     setCartItems(updatedCart.cartItems); // Assuming `updatedCart.cartItems` holds the new cart state
+  //   }
+  // };
+  

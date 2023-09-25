@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-    # skip_before_action :authorize, only: [:index, :show]
-
     def index 
         items = Item.all
         render json: items, include: :reviews 
