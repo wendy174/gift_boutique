@@ -63,25 +63,25 @@ function App() {
 
   return (
     <UserProvider>
-    <CartProvider>
-      <div className="App">
-        <TopBanner />
-        <Header className='header' />
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<ItemPage items={items} />} />
-          <Route path="/itemlist" element={<ItemList />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
-          <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
-          <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<SignUp/>} />
-        </Routes>
-        <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
-        <Footer />
-      </div>
-    </CartProvider>
+      <CartProvider>
+        <div className="App">
+          <TopBanner />
+          <Header className='header' />
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<ItemPage items={items} />} />
+            <Route path="/itemlist" element={<ItemList />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/items/:id" element={<ItemDetails setOpenSnackbar={setOpenSnackbar} updateStateWhenDelete={updateStateWhenDelete} />} />
+            <Route path="/imagecarousel" element={<ImageCarousel images={items.image}/>} />
+            <Route path="/itemform" element={<ItemForm addNewItem={addNewItem}/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<SignUp/>} />
+          </Routes>
+          <AlertBar open={openSnackbar} handleClose={() => setOpenSnackbar(false)} message="Item Deleted" severity="info" /> 
+          <Footer />
+        </div>
+      </CartProvider>
     </UserProvider>
   );
 }
