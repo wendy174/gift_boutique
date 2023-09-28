@@ -1,2 +1,0 @@
-class SellersController < ApplicationController
-end

@@ -1,15 +1,7 @@
 class CustomersController < ApplicationController
 
-    def authenticate
-      token = request.headers['Authorization']
-      payload = FirebaseIdToken::Certificates.request
-      decoded_token = FirebaseIdToken::Signature.verify(token)
-      if decoded_token
-        @current_customer = Customer.find_by(firebase_uid: decoded_token['sub'])
-      else
-        render json: { error: 'Authentication failed' }, status: :unauthorized
-      end
-    end
+
+    
   
 
     # def create_or_find

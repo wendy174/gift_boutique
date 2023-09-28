@@ -1,31 +1,9 @@
-// import React, { createContext, useContext, useState } from 'react';
-
-// const CustomerContext = createContext();
-
-// export const useCustomer = () => {
-//   return useContext(CustomerContext);
-// };
-
-// export function CustomerProvider({ children }) {
-
-//   const [currentCustomer, setCurrentCustomer] = useState(null);
-
-//   const value = {
-//     currentCustomer,
-//     setCurrentCustomer
-//   };
-
-//   return (
-//     <CustomerContext.Provider value={value}>
-//       {children}
-//     </CustomerContext.Provider>
-//   );
-// }
-
 import React, { createContext, useState, useContext } from "react";
 
 const UserContext = createContext();
 
+
+// custom hook that errors if component is not inside of userProvider
 export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
@@ -39,8 +17,7 @@ export const UserProvider = ({ children }) => {
 
   const updateCurrentUser = (newCustomerData) => {
     setCurrentUser(newCustomerData);
-    console.log(currentUser)
-  };
+};
 
   return (
     <UserContext.Provider value={{ currentUser, updateCurrentUser }}>

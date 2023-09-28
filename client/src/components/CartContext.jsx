@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useUser } from './UserContext';
 
 const CartContext = createContext();
 
@@ -8,12 +9,19 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const { currentUser, updateCurrentUser } = useUser();
+
 
 
   const addToCart = async (item) => {
+    const token = currentUser ? await currentUser.getIdToken() : null;
     const response = await fetch("/api/carts/add_item", {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: 
+        { 
+          'Content-Type': 'application/json', 
+          'Authorization': `Bearer ${token}`
+        },
       body: JSON.stringify({ item_id: item.id, quantity: 1 }),
     });
   
