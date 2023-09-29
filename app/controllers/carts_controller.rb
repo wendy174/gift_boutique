@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
-  # before_action :authenticate, only: [:add_item]
+  # before_action :current_cart
+
+
  
     def index 
         carts = Cart.all
@@ -10,7 +12,7 @@ class CartsController < ApplicationController
         @cart = current_cart 
         @item = Item.find_by_id(params[:item_id])
         @cart.add_item(@item) # add_item from model to add item to cart 
-        render json: @cart, status: :ok 
+        render json: @cart.as_json(include: { cart_items: { include: :item } }), status: :ok
       end
 
       private

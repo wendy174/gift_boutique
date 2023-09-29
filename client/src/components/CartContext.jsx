@@ -27,7 +27,13 @@ export const CartProvider = ({ children }) => {
   
     if (response.ok) {
       const updatedCart = await response.json();
-      setCartItems(updatedCart.cartItems);
+      console.log('Updated cart:', updatedCart); // Add this line
+      const itemsFromCart = updatedCart.cart_items.map(cartItem => ({
+        ...cartItem.item,
+        quantity: cartItem.quantity,
+        price: cartItem.price
+      }));
+      setCartItems(itemsFromCart);
     } else {
       console.error('Response status:', response.status);
       const data = await response.json();

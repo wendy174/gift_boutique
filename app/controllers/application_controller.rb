@@ -9,7 +9,6 @@ class ApplicationController < ActionController::API
       token = request.headers['Authorization']
       payload = FirebaseIdToken::Certificates.request
       decoded_token = FirebaseIdToken::Signature.verify(token)
-      puts "Received Token: #{token}"
       if decoded_token
         @current_customer = Customer.find_by(firebase_uid: decoded_token['sub'])
         unless @current_customer
@@ -32,8 +31,10 @@ class ApplicationController < ActionController::API
   def current_cart
     if session[:cart_id]
       Cart.find(session[:cart_id])
+      Rails.logger.debug "Session Cart ID: #{session[:cart_id]}"
+      return Cart.find(session[:cart_id])
     else
-      cart = Cart.create!(customer_id: @current_customer.id)
+      cart = Cart.create!(customer_id: 6)
       session[:cart_id] = cart.id
       cart
     end
