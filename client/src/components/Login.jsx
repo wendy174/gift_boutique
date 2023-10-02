@@ -30,7 +30,6 @@ export default function SignIn() {
   const [errors, setErrors] = useState([])
   const { currentUser, updateCurrentUser } = useUser();
 
-  // console.log(auth?.currentUser?.email)
   
 
 const signInWithGoogle = async () => {
@@ -49,7 +48,6 @@ const handleSignIn = async (e) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user; // userCred contains user related data
     const token = await user.getIdToken(); // authen token 
-    console.log(`login token: ${token}`)
 
     // fetch additional customer data
     // token in headers to ensure request is authorized
@@ -61,18 +59,8 @@ const handleSignIn = async (e) => {
 
     if (resp.ok) { 
       const userInfoFromDb = await resp.json(); // user info from db
-      // Combines Firebase basic user data and additional user info from api 
-      // user = firebase basic user data 
-      // userInfo user info from api 
-      // const completeUserInfo = { ...user, ...userInfo };
-      // console.log("user in login is:", user, "and userInfo is", userInfo);
-    
-
-
-      // Update your app's state with the logged-in user info
-      // updateCurrentUser(completeUserInfo);
-      updateCurrentUser(user, userInfoFromDb)
-
+      updateCurrentUser(user, userInfoFromDb); 
+      navigate('/')
    
     } else {
       throw new Error('Could not fetch additional user info');
@@ -176,3 +164,15 @@ const handleSignIn = async (e) => {
     </ThemeProvider>
   );
 }
+
+
+// Combines Firebase basic user data and additional user info from api 
+      // user = firebase basic user data 
+      // userInfo user info from api 
+      // const completeUserInfo = { ...user, ...userInfo };
+      // console.log("user in login is:", user, "and userInfo is", userInfo);
+    
+
+
+      // Update your app's state with the logged-in user info
+      // updateCurrentUser(completeUserInfo);
