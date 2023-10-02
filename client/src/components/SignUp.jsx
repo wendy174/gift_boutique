@@ -1,5 +1,5 @@
-import { auth, googleProvider, githubProvider } from "./FireBase.jsx";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth"; 
+import { auth } from "./FireBase.jsx";
+import { createUserWithEmailAndPassword } from "firebase/auth"; 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -7,14 +7,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState} from 'react'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from './UserContext';
 
 
@@ -30,7 +29,7 @@ const [newCustomer, setNewCustomer] = useState({
 })
 const navigate = useNavigate(); 
 const [errors, setErrors] = useState([]); 
-const { currentUser, updateCurrentUser } = useUser();
+const { updateCurrentUser } = useUser();
 
 const handleChange = (e) => {
   setNewCustomer({...newCustomer, [e.target.name]: e.target.value})
@@ -56,24 +55,15 @@ const handleSubmit = async (e) => {
       })
     });
 
-    console.log("Firebase UID:", user.uid);
-
 
     if (!resp.ok) {
       throw new Error(`HTTP error! status: ${resp.status}`);
     }
 
     const myCustomer = await resp.json();
-    // Update the current customer in App.js
-    // Combine the user data from Firebase and Rails
-    const completeUser = {
-      ...myCustomer,
-      ...user
-    };
     
-    updateCurrentUser(completeUser);
-    console.log(completeUser)
-    // navigate('/');
+    updateCurrentUser(user, myCustomer);
+    navigate('/'); 
 
    
   } catch(error) {
