@@ -59,19 +59,19 @@ const handleSignIn = async (e) => {
       }
     });
 
-    if (resp.ok) { // if API response is successful block of code executed
-      const userInfo = await resp.json(); 
+    if (resp.ok) { 
+      const userInfoFromDb = await resp.json(); // user info from db
       // Combines Firebase basic user data and additional user info from api 
       // user = firebase basic user data 
       // userInfo user info from api 
       // const completeUserInfo = { ...user, ...userInfo };
       // console.log("user in login is:", user, "and userInfo is", userInfo);
+    
 
 
       // Update your app's state with the logged-in user info
       // updateCurrentUser(completeUserInfo);
-      updateCurrentUser(user)
-      console.log(user)
+      updateCurrentUser(user, userInfoFromDb)
 
    
     } else {
