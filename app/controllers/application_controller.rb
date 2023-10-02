@@ -19,22 +19,14 @@ class ApplicationController < ActionController::API
       end
     end
 
-  
-    
-  #   def current_cart
-  #     Cart.find(session[:cart_id])
-  #     cart = Cart.create!(customer_id: @current_customer.id)
-  #     session[:cart_id] = cart.id
-  #     cart
-  # end
+
 
   def current_cart
     if session[:cart_id]
       Cart.find(session[:cart_id])
-      Rails.logger.debug "Session Cart ID: #{session[:cart_id]}"
       return Cart.find(session[:cart_id])
     else
-      cart = Cart.create!(customer_id: 6)
+      cart = Cart.create!(customer_id: @current_customer.id)
       session[:cart_id] = cart.id
       cart
     end

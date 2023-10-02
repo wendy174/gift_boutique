@@ -13,14 +13,17 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  // have to separate firebase and database user info or login won't work 
+  const [currentUser, setCurrentUser] = useState(null); // firebase user info 
+  const [currentUserDb, setCurrentUserDb] = useState(null) // database user info 
 
-  const updateCurrentUser = (newCustomerData) => {
-    setCurrentUser(newCustomerData);
+  const updateCurrentUser = (firebaseUserInfo, dataBaseUserInfo) => {
+    setCurrentUser(firebaseUserInfo);
+    setCurrentUserDb(dataBaseUserInfo); 
 };
 
   return (
-    <UserContext.Provider value={{ currentUser, updateCurrentUser }}>
+    <UserContext.Provider value={{ currentUser, currentUserDb, updateCurrentUser }}>
       {children}
     </UserContext.Provider>
   );
