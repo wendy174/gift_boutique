@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
-  # before_action :current_cart
-
+  skip_before_action :authenticate, only: [:index, :show, :add_item]
 
  
     def index 

@@ -1,43 +1,6 @@
 class CustomersController < ApplicationController
-  # skip_before_action :authenticate, only: [:index, :show]
+  skip_before_action :authenticate, only: [:index, :show]
 
-
-
-    
-  
-
-    # def create_or_find
-    #     puts "Debug: Params #{params.inspect}"
-      
-    #     firebase_uid = params[:firebase_uid]
-    #     email = params[:email]
-    #     first_name = params[:first_name]
-    #     last_name = params[:last_name]
-    #     profile_pic = params[:profile_pic]
-      
-    #     customer = Customer.find_by(firebase_uid: firebase_uid)
-      
-    #     if customer
-    #       puts "Debug: Found customer #{customer.inspect}"
-    #       customer.update(
-    #         email: email,
-    #         first_name: first_name,
-    #         last_name: last_name,
-    #         profile_pic: profile_pic
-    #       )
-    #     else
-    #       puts "Debug: Creating a new customer"
-    #       customer = Customer.create(
-    #         firebase_uid: firebase_uid,
-    #         email: email,
-    #         first_name: first_name,
-    #         last_name: last_name,
-    #         profile_pic: profile_pic
-    #       )
-    #     end
-      
-    #     render json: { customer: customer }
-    #   end
       
     
     def index 
