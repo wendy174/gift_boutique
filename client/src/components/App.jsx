@@ -21,7 +21,6 @@ import Footer from './Footer';
 import Cart from './cart.jsx'; // cart has to be lowercase, maybe has to do with how I originally named the file 
 
 
-
 function App() {
   const [items, setItems] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -61,7 +60,9 @@ function App() {
 
 
 
+
   return (
+
     <UserProvider>
       <CartProvider>
         <div className="App">
@@ -83,6 +84,7 @@ function App() {
         </div>
       </CartProvider>
     </UserProvider>
+
   );
 }
 

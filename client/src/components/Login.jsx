@@ -77,17 +77,20 @@ const handleSignIn = async (e) => {
 
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
+
         <Box
           sx={{
             marginTop: 8,
+            marginBottom: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             padding: '16px', 
-            border: '1px solid #ddd', 
-            borderRadius: '8px' 
+            border: '1px solid #aaa',
+            borderRadius: '8px'
           }}
+          style={{ backgroundColor: 'white', border: '1px solid #aaa' }}
+
         
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -96,7 +99,7 @@ const handleSignIn = async (e) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form"  noValidate sx={{ mt: 1 }} onSubmit={handleSignIn}>
+          <Box component="form"  noValidate sx={{ mt: 1 }}  onSubmit={handleSignIn}>
             <TextField
               margin="normal"
               required
@@ -149,10 +152,10 @@ const handleSignIn = async (e) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              
               </Grid>
+              <br>
+              </br>
               <Grid item>
                 <Link to={`/signup`}>Don't have an account? Sign up</Link>
               </Grid>
