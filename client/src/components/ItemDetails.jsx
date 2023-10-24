@@ -65,15 +65,16 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
 
         <div>
           
-          <Container sx={{ marginTop: '3rem', display: 'flex', alignItems: 'center', gap: '2rem', height: '70vh', justifyContent: 'space-between' }}>
+          <Container sx={{ marginTop: '3rem', display: 'flex', alignItems: 'flex-start', gap: '2rem', height: '70vh', justifyContent: 'space-between' }}>
 
                 {/* Image Carousel */}
-                <Box sx={{ flexBasis: '50%', maxWidth: '50%' }}>
-                    <ImageCarousel images={imageUrls} />
-                </Box>
-    
+                <Box sx={{ flexBasis: '50%', maxWidth: '50%', height: '100%' }}>
+                <ImageCarousel images={imageUrls} />
+                    </Box>
+            
                 {/* Item Details */}
-                <Box sx={{ flexBasis: '50%', maxWidth: '50%', display: 'flex', justifyContent: 'center' }}>
+                <Box sx={{ flexBasis: '50%', maxWidth: '50%', display: 'flex', justifyContent: 'center', transform: 'translateY(100px)' }}>
+
 
                     <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                         <Typography variant="h4" sx={{ marginBottom: "16px" }}>
@@ -102,7 +103,7 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
             </Container>
     
             {/* Reviews */}
-            <Box sx={{ marginTop: '25rem', marginBottom: '5rem' }}>
+            <Box sx={{ marginTop: '10rem', marginBottom: '5rem' }}>
                 <Review reviews={itemData.reviews || []} />
             </Box>
         </div>

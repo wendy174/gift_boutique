@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carous
 
 const ImageCarousel = ({ images }) => {
   return (
-    <div style={{ width: '600px', height: '300px' }} >
+    <div style={{ width: '600px', height: '100%' }}>
     <Carousel >
       {images.map((image, index) => (
         <div key={index}>
