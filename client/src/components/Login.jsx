@@ -30,15 +30,40 @@ export default function SignIn() {
   const [errors, setErrors] = useState([])
   const { currentUser, updateCurrentUser } = useUser();
 
+  console.log(errors)
+
   
 
 const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
+    const userCredential = await signInWithPopup(auth, googleProvider);
+    const user = userCredential.user; 
+    const token = await user.getIdToken();
+
+    // fetch additional customer data
+    const resp = await fetch(`/api/customers/${user.uid}`, { 
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!resp.ok) {
+      const errorData = await resp.json();
+      throw new Error(errorData.error || 'Unknown error'); // Note the change here
+    } 
+
+    const userInfoFromDb = await resp.json();
+    updateCurrentUser(user, userInfoFromDb);
+    navigate('/');
+
+
   } catch (error) {
-    console.error(error);
+    console.error('Error during login:', error);
+    setErrors([...errors, error.message]);
   }
 };
+
+
 
 const handleSignIn = async (e) => {
   e.preventDefault();
@@ -130,7 +155,9 @@ const handleSignIn = async (e) => {
             />
              {/* {errors.length > 0 && <div>Errors: {errors.join(', ')}</div>} */}
             <Typography component="h3" variant="h6" style={{ color: 'purple', textAlign: 'center'}}>
-                {errors? <div>{errors}</div>:null}
+            {errors && errors.map((error, index) => (
+                <div key={index}>{error}</div>
+            ))}
             </Typography>
             <Button
               type="submit"
