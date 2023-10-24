@@ -82,14 +82,18 @@ export default function ItemForm({addNewItem}) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
+            marginBottom: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            padding: '16px', 
+            border: '1px solid #aaa',
+            borderRadius: '8px'
           }}
+          style={{ backgroundColor: 'white', border: '1px solid #aaa' }}
         >
           
           <Typography component="h1" variant="h5">
@@ -149,7 +153,6 @@ export default function ItemForm({addNewItem}) {
                   onChange={updateField}
                 />
               </Grid>
-              {/* usefirebase for image upload  */}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -173,7 +176,7 @@ export default function ItemForm({addNewItem}) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sumbit
+              Submit
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
