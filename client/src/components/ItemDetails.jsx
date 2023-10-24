@@ -14,7 +14,6 @@ import { useCart } from './CartContext';
 export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
     const [itemData, setItemData] = useState(null);
     const { id } = useParams();
-    // const [deleteMessage, setDeleteMessage] = useState(false)
     const navigate = useNavigate();
     const { addToCart } = useCart(); 
 
@@ -63,37 +62,50 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
     const imageUrls = itemData.image;
   
     return (
-      <div>
-          <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
-            <ImageCarousel images={imageUrls} />
-                <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Typography variant="h4" sx={{ marginBottom: "16px" }}>{itemData.name}</Typography>
-                    <Typography variant="h5" color="textSecondary">
-                    ${itemData.price}
-                    <br>
-                    </br>
-                    <StarRating value={itemData.average_rating}/>
-                    <br> 
-                    </br>
-                    <DeleteItemButton onClick={handleDeleteItem}/>
-                    <br>
-                    </br>
-                    <Button 
-                      variant="contained" 
-                      size="large" 
-                      startIcon={<AddShoppingCartIcon />} onClick= {() => addToCart(itemData)}
-                      sx={{ backgroundColor: '#b96eaa'}} >
-                      Add to Cart
-                    </Button>
-                    </Typography>
+
+        <div>
+          
+          <Container sx={{ marginTop: '3rem', display: 'flex', alignItems: 'center', gap: '2rem', height: '70vh', justifyContent: 'space-between' }}>
+
+                {/* Image Carousel */}
+                <Box sx={{ flexBasis: '50%', maxWidth: '50%' }}>
+                    <ImageCarousel images={imageUrls} />
                 </Box>
-                </CardContent>
-          </Container>
-          <Box sx={{ marginTop: '25rem', marginBottom: '5rem' }}>
-            <Review reviews={itemData.reviews || []} />
-          </Box>
-      </div>
+    
+                {/* Item Details */}
+                <Box sx={{ flexBasis: '50%', maxWidth: '50%', display: 'flex', justifyContent: 'center' }}>
+
+                    <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+                        <Typography variant="h4" sx={{ marginBottom: "16px" }}>
+                            {itemData.name}
+                        </Typography>
+                        <Typography variant="h5" color="textSecondary" sx={{ marginBottom: "16px" }}>
+                            ${itemData.price}
+                        </Typography>
+                        <Box sx={{ marginBottom: "1rem" }}>
+                            <StarRating value={itemData.average_rating} />
+                        </Box>
+                        <Box sx={{ marginBottom: "1rem" }}>
+                            <DeleteItemButton onClick={handleDeleteItem} />
+                        </Box>
+                        <Button 
+                            variant="contained" 
+                            size="large" 
+                            startIcon={<AddShoppingCartIcon />} 
+                            onClick={() => addToCart(itemData)}
+                            sx={{ backgroundColor: '#b96eaa' }}
+                        >
+                            Add to Cart
+                        </Button>
+                    </CardContent>
+                </Box>
+            </Container>
+    
+            {/* Reviews */}
+            <Box sx={{ marginTop: '25rem', marginBottom: '5rem' }}>
+                <Review reviews={itemData.reviews || []} />
+            </Box>
+        </div>
     );
   }
   
