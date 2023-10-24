@@ -76,10 +76,11 @@ const handleSubmit = async (e) => {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
+
         <Box
           sx={{
             marginTop: 8,
+            marginBottom: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -87,6 +88,8 @@ const handleSubmit = async (e) => {
             border: '1px solid #ddd', 
             borderRadius: '8px' 
           }}
+          style={{ backgroundColor: 'white', border: '1px solid #aaa' }}
+
         
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
