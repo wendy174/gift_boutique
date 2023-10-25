@@ -30,7 +30,6 @@ export default function SignIn() {
   const [errors, setErrors] = useState([])
   const { currentUser, updateCurrentUser } = useUser();
 
-  console.log(errors)
 
   
 
@@ -194,15 +193,3 @@ const handleSignIn = async (e) => {
     </ThemeProvider>
   );
 }
-
-
-// Combines Firebase basic user data and additional user info from api 
-      // user = firebase basic user data 
-      // userInfo user info from api 
-      // const completeUserInfo = { ...user, ...userInfo };
-      // console.log("user in login is:", user, "and userInfo is", userInfo);
-    
-
-
-      // Update your app's state with the logged-in user info
-      // updateCurrentUser(completeUserInfo);
