@@ -159,7 +159,7 @@ export default function ItemForm({addNewItem}) {
                   fullWidth
                   type='text'
                   id="image"
-                  label="Images"
+                  label="Image"
                   name="image"
                   autoComplete="image"
                   value={newItem.image} 
@@ -178,13 +178,6 @@ export default function ItemForm({addNewItem}) {
             >
               Submit
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
