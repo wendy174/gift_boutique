@@ -1,5 +1,6 @@
 import React from 'react';
-import SvgIcon from '@mui/joy/SvgIcon';
+import SvgIcon from '@mui/material/SvgIcon';
+
 
 export default function GoogleIcon() {
   return (
