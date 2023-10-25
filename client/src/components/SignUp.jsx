@@ -157,7 +157,7 @@ const handleSubmit = async (e) => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: '#b96eaa', }}
             >
               Sign Up
             </Button>
