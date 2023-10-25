@@ -6,8 +6,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const Cart = () => {
   const { cartItems, removeFromCart } = useCart();
 
-  const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const totalAmount = cartItems ? cartItems.reduce((total, item) => total + (item.price * item.quantity), 0) : 0;
+  const totalQuantity = cartItems ? cartItems.reduce((total, item) => total + item.quantity, 0) : 0;
 
   if (cartItems.length === 0) {
     return (
