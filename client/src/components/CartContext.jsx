@@ -53,7 +53,7 @@ export const CartProvider = ({ children }) => {
   
     if (response.ok) {
       const updatedCart = await response.json();
-      setCartItems(updatedCart.cartItems);
+      setCartItems(updatedCart.cartItems || []);
     }
   };
   

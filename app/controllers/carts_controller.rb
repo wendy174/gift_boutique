@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  skip_before_action :authenticate, only: [:index, :show, :add_item]
+  skip_before_action :authenticate, only: [:index, :show, :add_item, :remove_item]
 
  
     def index 
@@ -13,6 +13,23 @@ class CartsController < ApplicationController
         @cart.add_item(@item) # add_item from model to add item to cart 
         render json: @cart.as_json(include: { cart_items: { include: :item } }), status: :ok
     end
+
+    def remove_item
+      @cart = current_cart
+      @item = Item.find_by_id(params[:item_id])
+      
+      if @item
+        # Implement logic to remove the item from the cart
+        @cart.remove_item(@item)  # Assuming you have this method on the Cart model
+        
+        render json: { cartItems: @cart.cart_items.as_json(include: :item) }, status: :ok
+
+      else
+        render json: { error: "Item not found" }, status: :not_found
+      end
+    end
+
+
 
       private
 

@@ -13,6 +13,18 @@ class Cart < ApplicationRecord
           new_cart_item = cart_items.create!(item_id: item.id, quantity: quantity, price: item.price)
         end
     end
+
+    def remove_item(item)
+      cart_item = cart_items.find_by(item: item)
+      return unless cart_item # if the item isn't in the cart, we simply return
+  
+      if cart_item.quantity > 1
+        cart_item.quantity -= 1
+        cart_item.save
+      else
+        cart_item.destroy
+      end
+    end
     
       # Loops thru and get total price in cart 
       def total_price
