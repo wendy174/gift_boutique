@@ -89,15 +89,15 @@ export default function ItemForm({addNewItem}) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '16px', 
+            padding: '30px', 
             border: '1px solid #aaa',
-            borderRadius: '8px'
+            borderRadius: '10px'
           }}
           style={{ backgroundColor: 'white', border: '1px solid #aaa' }}
         >
           
           <Typography component="h1" variant="h5">
-            Submit your product to sell!
+            Submit a product to sell
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
