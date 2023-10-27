@@ -58,7 +58,7 @@ export default function ItemForm({addNewItem}) {
     e.preventDefault()
 
     try { 
-      const resp = await fetch('/api/items', { 
+      const resp = await fetch('http://localhost:3000/items', { 
         method: 'POST', 
         headers: { 
           "Content-Type": 'application/json', 

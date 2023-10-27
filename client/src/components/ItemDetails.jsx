@@ -39,7 +39,7 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
   // Delete requests 
   const handleDeleteItem = async () => {
     try {
-        const response = await fetch(`/api/items/${id}`, {
+        const response = await fetch(`http://localhost:3000/items/${id}`, {
             method: 'DELETE'
         });
 
