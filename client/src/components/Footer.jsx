@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Grid, Typography, Link, IconButton } from '@material-ui/core';
-import { Facebook, Twitter, LinkedIn, Instagram } from '@material-ui/icons';
+import { Box, Grid, Typography, Link, IconButton } from '@mui/material';
+import { Facebook, Twitter, LinkedIn, Instagram } from '@mui/icons-material';
 
 const Footer = () => {
   return (
