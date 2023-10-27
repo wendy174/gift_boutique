@@ -35,7 +35,7 @@ function App() {
   useEffect(() => { 
     const fetchData = async() => { 
       try { 
-        const resp = await fetch("/api/items")
+        const resp = await fetch("http://localhost:3000/items")
         const itemsData = await resp.json()
         setItems(itemsData)
       } catch (error) { 
