@@ -35,8 +35,9 @@ function App() {
   useEffect(() => { 
     const fetchData = async() => { 
       try { 
-        const resp = await fetch("localhost:3000/items")
+        const resp = await fetch("/api/items")
         const itemsData = await resp.json()
+        console.log(itemsData)
         setItems(itemsData)
       } catch (error) { 
         console.error('Error:', error)
