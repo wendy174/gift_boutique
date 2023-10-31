@@ -16,12 +16,14 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToCart } = useCart(); 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
 
 // Fetch Request for individual items 
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const resp = await fetch(`/api/items/${id}`);
+          const resp = await fetch(`${apiUrl}/items/${id}`);
           const data = await resp.json();
           setItemData(data);
         } catch (error) {
@@ -39,7 +41,7 @@ export default function ItemDetails({setOpenSnackbar, updateStateWhenDelete}) {
   // Delete requests 
   const handleDeleteItem = async () => {
     try {
-        const response = await fetch(`/api/items/${id}`, {
+        const response = await fetch(`${apiUrl}/items/${id}`, {
             method: 'DELETE'
         });
 

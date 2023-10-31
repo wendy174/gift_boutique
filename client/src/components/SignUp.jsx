@@ -30,6 +30,8 @@ const [newCustomer, setNewCustomer] = useState({
 const navigate = useNavigate(); 
 const [errors, setErrors] = useState([]); 
 const { updateCurrentUser } = useUser();
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const handleChange = (e) => {
   setNewCustomer({...newCustomer, [e.target.name]: e.target.value})
@@ -44,7 +46,7 @@ const handleSubmit = async (e) => {
     const user = userCredential.user;
     
     // Second, make a POST request to your API to save the user in your database
-    const resp = await fetch('/api/customers', { 
+    const resp = await fetch(`${apiUrl}/customers`, { 
       method: 'POST', 
       headers: { 
         "Content-Type": 'application/json', 

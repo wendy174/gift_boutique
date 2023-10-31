@@ -26,6 +26,8 @@ export default function ItemForm({addNewItem}) {
     category: '', 
     seller_id: 1
   })
+  const apiUrl = import.meta.env.VITE_API_URL;
+
 
 
   // dynamically capture input fields 
@@ -58,7 +60,7 @@ export default function ItemForm({addNewItem}) {
     e.preventDefault()
 
     try { 
-      const resp = await fetch('/api/items', { 
+      const resp = await fetch(`${apiUrl}/items`, { 
         method: 'POST', 
         headers: { 
           "Content-Type": 'application/json', 

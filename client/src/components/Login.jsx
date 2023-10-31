@@ -29,6 +29,7 @@ export default function SignIn() {
   const navigate = useNavigate()
   const [errors, setErrors] = useState([])
   const { currentUser, updateCurrentUser } = useUser();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
 
   
@@ -40,7 +41,7 @@ const signInWithGoogle = async () => {
     const token = await user.getIdToken();
 
     // fetch additional customer data
-    const resp = await fetch(`/api/customers/${user.uid}`, { 
+    const resp = await fetch(`${apiUrl}/customers/${user.uid}`, { 
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -75,7 +76,7 @@ const handleSignIn = async (e) => {
 
     // fetch additional customer data
     // token in headers to ensure request is authorized
-    const resp = await fetch(`/api/customers/${user.uid}`, { 
+    const resp = await fetch(`${apiUrl}/customers/${user.uid}`, { 
       headers: {
         'Authorization': `Bearer ${token}`
       }

@@ -10,12 +10,14 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const { currentUser, updateCurrentUser } = useUser();
+  const apiUrl = import.meta.env.VITE_API_URL;
+
 
 
 
   const addToCart = async (item) => {
     const token = currentUser ? await currentUser.getIdToken() : null;
-    const response = await fetch("/api/carts/add_item", {
+    const response = await fetch(`${apiUrl}/carts/add_item`, {
       method: 'POST',
       headers: 
         { 
@@ -45,7 +47,7 @@ export const CartProvider = ({ children }) => {
  
 
   const removeFromCart = async (itemId) => {
-    const response = await fetch(`/api/carts/remove_item`, { // Adjust endpoint as needed
+    const response = await fetch(`${apiUrl}/carts/remove_item`, { // Adjust endpoint as needed
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ item_id: itemId }),
