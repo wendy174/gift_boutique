@@ -32,3 +32,4 @@ services:
       - ./client:/client
     environment:
       POSTGRES_PASSWORD: password
+      VITE_API_URL: 'http://3.144.205.83'

@@ -24,6 +24,8 @@ import Cart from './Cart.jsx'; // cart has to be lowercase, maybe has to do with
 function App() {
   const [items, setItems] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
+
 
   // Updates local state when with delete item request
   const updateStateWhenDelete = (itemData) => { 
@@ -35,7 +37,7 @@ function App() {
   useEffect(() => { 
     const fetchData = async() => { 
       try { 
-        const resp = await fetch("/api/items")
+        const resp = await fetch(`${apiUrl}/items`)
         const itemsData = await resp.json()
         console.log(itemsData)
         setItems(itemsData)
