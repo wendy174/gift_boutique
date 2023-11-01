@@ -24,7 +24,7 @@ module GiftBoutique
     
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:4000' # Allow requests from your frontend's origin
+        origins 'http://giftboutique.wendyprojects.com' # Allow requests from your frontend's origin
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
       end
     end
