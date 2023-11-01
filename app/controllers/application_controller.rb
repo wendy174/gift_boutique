@@ -26,7 +26,7 @@ class ApplicationController < ActionController::API
       Cart.find(session[:cart_id])
       return Cart.find(session[:cart_id])
     else
-      cart = Cart.create!(customer_id: 6)
+      cart = Cart.create!(customer_id: 1)
       session[:cart_id] = cart.id
       cart
     end
