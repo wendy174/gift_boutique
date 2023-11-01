@@ -68,6 +68,7 @@ Rails.application.configure do
   # Helps with cors blocking 
   config.hosts << "localhost"
   config.hosts << "api"
+  config.hosts << "giftboutique.wendyprojects.com"
 
 
 
