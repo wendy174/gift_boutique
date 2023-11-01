@@ -17,7 +17,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins 'http://18.222.88.192:4000'  # This is your frontend's origin
+      origins 'http://3.141.63.83:4000'  # This is your frontend's origin
       resource '*',
                headers: :any,
                methods: [:get, :post, :put, :patch, :delete, :options, :head],
