@@ -18,7 +18,7 @@ import { CartProvider } from './CartContext';
 import { UserProvider, useUser } from './UserContext.jsx'; 
 import TopBanner from './TopBanner.jsx'; 
 import Footer from './Footer';
-import Cart from './Cart.jsx'; // cart has to be lowercase, maybe has to do with how I originally named the file 
+import Cart from './cart.jsx'; // cart has to be lowercase, maybe has to do with how I originally named the file 
 
 
 function App() {
