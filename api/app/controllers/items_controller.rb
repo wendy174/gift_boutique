@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    skip_before_action :authenticate, only: [:index, :show]
+    skip_before_action :authenticate, only: [:index, :show, :destroy, :create]
 
     def index 
         items = Item.all
