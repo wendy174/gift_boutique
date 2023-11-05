@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -25,7 +26,8 @@ export default function ItemForm({addNewItem}) {
     quantity: '', 
     category: '', 
     seller_id: 1
-  })
+  }); 
+  const navigate = useNavigate();
 
 
   // dynamically capture input fields 
@@ -70,8 +72,9 @@ export default function ItemForm({addNewItem}) {
         throw new Error(`HTTP error! status: ${resp.status}`);
       }
 
-      const myItem = await resp.json()
-      addNewItem(myItem)
+      const myItem = await resp.json(); 
+      addNewItem(myItem); 
+      navigate('/'); 
 
     } catch(error) { 
       console.error('An error occurred while saving the plant:', error)
