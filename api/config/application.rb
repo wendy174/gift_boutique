@@ -57,5 +57,5 @@ require "action_cable/engine"
     config.action_dispatch.cookies_same_site_protection = :strict
 
     
-  end
+
 end
