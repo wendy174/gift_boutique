@@ -16,7 +16,7 @@ require "action_cable/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+# Bundler.require(*Rails.groups)
 
 # module GiftBoutique
 #   class Application < Rails::Application
@@ -27,7 +27,7 @@ Bundler.require(*Rails.groups)
 #         origins 'http://3.141.63.83:4000' # Allow requests from your frontend's origin
 #         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
 #       end
-#     end
+#   end
     
     
     
