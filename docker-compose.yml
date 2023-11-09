@@ -32,4 +32,4 @@ services:
       - ./client:/client
     environment:
       POSTGRES_PASSWORD: password
-      VITE_API_URL: 'giftboutique.wendyprojects.com:3000'
+      VITE_API_URL: 'http://giftboutique.wendyprojects.com:3000'
