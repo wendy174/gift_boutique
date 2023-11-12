@@ -141,6 +141,108 @@ I10 = Item.create!(
     seller_id: s3.id 
 )
 
+## adding more items 
+
+I11 = Item.create!(
+    name: "Comfy Shiba Inu Slippers", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2022/01/53268-xhow2c.jpg",
+    "https://kawaiitherapy.com/wp-content/uploads/2022/01/53268-1wrncu.jpg", 
+    "https://kawaiitherapy.com/wp-content/uploads/2022/01/53268-fkizzb.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I12 = Item.create!(
+    name: "Fluffy Cow Warm Cozy Slippers", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2023/10/19aa0d70-56e3-4c00-b823-9c03af8e4406-3.jpg",
+    'https://kawaiitherapy.com/wp-content/uploads/2023/10/fbe7f9c0-275a-4545-9652-f267593a0326.jpg'],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I13 = Item.create!(
+    name: "Shiba Inu Bathroom Floor Mat", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2022/05/56071-brtft3.jpg",
+    "https://kawaiitherapy.com/wp-content/uploads/2022/05/56071-1soie4.jpg",
+    "https://kawaiitherapy.com/wp-content/uploads/2022/05/56071-k8ircc.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "home", 
+    seller_id: s3.id 
+)
+
+I14 = Item.create!(
+    name: "Cute Panda Japanese Style Chopstick Holder", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2021/02/39897-4afair.jpg",
+    "https://kawaiitherapy.com/wp-content/uploads/2021/02/0-5774cc.jpeg",
+    "https://kawaiitherapy.com/wp-content/uploads/2021/02/39895-kzwvka.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I15 = Item.create!(
+    name: "Korea Style Bear", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2021/10/50418-h0ijcn.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I16 = Item.create!(
+    name: "Bubbles the Bumble Bee Shark Plush", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2023/03/66089-er4w90.jpg",
+    "https://kawaiitherapy.com/wp-content/uploads/2023/03/66089-p92bk3.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I17 = Item.create!(
+    name: "Bubbles the Bumble Bee Shark Plush", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2022/04/0-4887b3.jpeg",
+    "https://kawaiitherapy.com/wp-content/uploads/2022/04/55285-3yh5ax.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I18 = Item.create!(
+    name: "Cat Paw Hearts Seat Cushion", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2021/04/42772-asesxn.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I19 = Item.create!(
+    name: "Chubby Squirrel Plush", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2020/09/0-f58d77.jpeg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+I20 = Item.create!(
+    name: "Jumbo Bear Cover", 
+    price: Faker::Commerce.price(range: 0..100.0), 
+    image: ["https://kawaiitherapy.com/wp-content/uploads/2022/01/Bear-Cover-Plush.jpg"],
+    quantity: Faker::Number.between(from: 1, to: 100), 
+    category: "Home", 
+    seller_id: s3.id 
+)
+
+
 
 
 # customers 
