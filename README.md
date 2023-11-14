@@ -13,7 +13,9 @@ docker build -t backend:1.0 .
 cd client
 docker build -t frontend:1.0 .
 
-
+## Two docker compose 
+docker-compose.dev.yml for development 
+docker-compose.yml for production 
 
 
 

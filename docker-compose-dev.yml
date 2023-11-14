@@ -26,11 +26,10 @@ services:
     image: react-client
     command: sh -c "npm install && npm run dev"
     ports:
-      - "80:4000"
+      - "4000:4000"
     working_dir: /client
     volumes:
       - ./client:/client
     environment:
       POSTGRES_PASSWORD: password
-      VITE_API_URL: 'http://giftboutique.wendyprojects.com:3000'
-  
+      VITE_API_URL: 'http://localhost:3000'

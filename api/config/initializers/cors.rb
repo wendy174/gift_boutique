@@ -17,7 +17,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://giftboutique.wendyprojects.com', 'http://giftboutique.wendyprojects.com:80'
+    origins 'http://giftboutique.wendyprojects.com', 'http://giftboutique.wendyprojects.com:80', "localhost:4000"
     #adding last part of origins fixed cors issue with domain name 
     resource '*',
       headers: :any,
