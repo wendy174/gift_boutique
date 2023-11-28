@@ -21,18 +21,30 @@ class ApplicationController < ActionController::API
 
 
 
-  def current_cart
-    if session[:cart_id]
-      Cart.find(session[:cart_id])
-      return Cart.find(session[:cart_id])
-    else
-      cart = Cart.create!(customer_id: 1)
-      session[:cart_id] = cart.id
-      cart
+    def current_cart
+      if @current_customer
+        cart = Cart.find_or_create_by(customer_id: @current_customer.id)
+        session[:cart_id] = cart.id
+        return cart
+      else
+        render json: { error: 'User not found' }, status: :not_found
+      end
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: "Cart not found with id: #{session[:cart_id]}" }, status: :not_found
     end
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Cart not found with id: #{session[:cart_id]}" }, status: :not_found
-  end
+    
+  # def current_cart
+  #   if session[:cart_id]
+  #     Cart.find(session[:cart_id])
+  #     return Cart.find(session[:cart_id])
+  #   else
+  #     cart = Cart.create!(customer_id: 1)
+  #     session[:cart_id] = cart.id
+  #     cart
+  #   end
+  # rescue ActiveRecord::RecordNotFound
+  #   render json: { error: "Cart not found with id: #{session[:cart_id]}" }, status: :not_found
+  # end
 
   
 

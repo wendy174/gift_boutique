@@ -18,35 +18,54 @@ export const CartProvider = ({ children }) => {
 
 
 
-
   const addToCart = async (item) => {
     const token = currentUser ? await currentUser.getIdToken() : null;
-    const response = await fetch(`${apiUrl}/carts/add_item`, {
-      method: 'POST',
-      headers: 
-        { 
-          'Content-Type': 'application/json', 
-          'Authorization': `Bearer ${token}`
-        },
-      body: JSON.stringify({ item_id: item.id, quantity: 1 }),
-    });
+    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
   
-    if (response.ok) {
-      const updatedCart = await response.json();
-      console.log('Updated cart:', updatedCart); // Add this line
-      const itemsFromCart = updatedCart.cart_items.map(cartItem => ({
-        ...cartItem.item,
-        quantity: cartItem.quantity,
-        price: cartItem.price
-      }));
-      setCartItems(itemsFromCart);
+    if (existingItem) {
+      // Item already exists in the cart; update its quantity
+      const updatedCartItems = cartItems.map((cartItem) => {
+        if (cartItem.id === item.id) {
+          return { ...cartItem, quantity: cartItem.quantity + 1 };
+        }
+        return cartItem;
+      });
+  
+      setCartItems(updatedCartItems);
     } else {
-      console.error('Response status:', response.status);
-      const data = await response.json();
-      console.error('Response data:', data);
-
+      // Item is not in the cart; add it with quantity 1
+      const newItem = { ...item, quantity: 1 };
+      setCartItems([...cartItems, newItem]);
     }
   };
+  // const addToCart = async (item) => {
+  //   const token = currentUser ? await currentUser.getIdToken() : null;
+  //   const response = await fetch(`${apiUrl}/carts/add_item`, {
+  //     method: 'POST',
+  //     headers: 
+  //       { 
+  //         'Content-Type': 'application/json', 
+  //         'Authorization': `Bearer ${token}`
+  //       },
+  //     body: JSON.stringify({ item_id: item.id, quantity: 1 }),
+  //   });
+  
+  //   if (response.ok) {
+  //     const updatedCart = await response.json();
+  //     console.log('Updated cart:', updatedCart); // Add this line
+  //     const itemsFromCart = updatedCart.cart_items.map(cartItem => ({
+  //       ...cartItem.item,
+  //       quantity: cartItem.quantity,
+  //       price: cartItem.price
+  //     }));
+  //     setCartItems(itemsFromCart);
+  //   } else {
+  //     console.error('Response status:', response.status);
+  //     const data = await response.json();
+  //     console.error('Response data:', data);
+
+  //   }
+  // };
 
  
 
