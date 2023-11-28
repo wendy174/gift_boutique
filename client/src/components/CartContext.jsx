@@ -45,16 +45,17 @@ export const CartProvider = ({ children }) => {
  
 
   const removeFromCart = async (itemId) => {
-    const response = await fetch(`/api/carts/remove_item`, { // Adjust endpoint as needed
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ item_id: itemId }),
-    });
+    // const response = await fetch(`/api/carts/remove_item`, { // Adjust endpoint as needed
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ item_id: itemId }),
+    // });
   
-    if (response.ok) {
-      const updatedCart = await response.json();
-      setCartItems(updatedCart.cartItems || []);
-    }
+    // if (response.ok) {
+    //   const updatedCart = await response.json();
+    //   setCartItems(updatedCart.cartItems || []);
+    // }
+    console.log('disabled')
   };
   
   return (
