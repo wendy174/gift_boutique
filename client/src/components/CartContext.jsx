@@ -10,6 +10,29 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const { currentUser, updateCurrentUser } = useUser();
+  console.log(cartItems)
+
+  const clearCart = () => { 
+    setCartItems([]); 
+  }
+
+  // const clearCart = async () => {
+  //   const token = currentUser ? await currentUser.getIdToken() : null;
+  //   const response = await fetch('/api/carts/destroy', { // Adjust the endpoint as needed
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`
+  //     },
+  //   });
+  
+  //   if (response.ok) {
+  //     console.log('Cart cleared successfully');
+  //     setCartItems([]); // Clear items from state
+  //   } else {
+  //     console.error('Failed to clear cart');
+  //   }
+  // };
 
 
 
@@ -59,7 +82,7 @@ export const CartProvider = ({ children }) => {
   };
   
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart}}>
       {children}
     </CartContext.Provider>
   );

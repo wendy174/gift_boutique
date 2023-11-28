@@ -2,9 +2,11 @@ import React from 'react';
 import { useCart } from './CartContext';
 import { Container, Typography, List, ListItem, ListItemText, ListItemAvatar, Avatar, ListItemSecondaryAction, IconButton, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 const Cart = () => {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, clearCart } = useCart();
 
   const totalAmount = cartItems ? cartItems.reduce((total, item) => total + (item.price * item.quantity), 0) : 0;
   const totalQuantity = cartItems ? cartItems.reduce((total, item) => total + item.quantity, 0) : 0;
@@ -53,6 +55,13 @@ const Cart = () => {
       <Typography variant="h6" align="center" gutterBottom>
         Total Price: ${totalAmount.toFixed(2)}
       </Typography>
+      <Button 
+        variant="contained"
+        onClick={clearCart}
+        sx={{ backgroundColor: '#b96eaa'}}
+        >
+          Clear Cart
+        </Button>
     </Container>
   );
 };
