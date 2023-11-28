@@ -12,6 +12,10 @@ export const CartProvider = ({ children }) => {
   const { currentUser, updateCurrentUser } = useUser();
   const apiUrl = import.meta.env.VITE_API_URL;
 
+  const clearCart = () => { 
+    setCartItems([]); 
+  }
+
 
 
 
@@ -61,7 +65,7 @@ export const CartProvider = ({ children }) => {
   };
   
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
