@@ -35,7 +35,7 @@ export default function ButtonAppBar() {
               <span> Welcome {currentUserDb ? currentUserDb.first_name : "Guest"}!</span>
         </Box>
           <Button color="inherit" component={Link} to='/'>Home</Button>
-          <Button color="inherit" component={Link} to="/itemform">Form</Button>
+          <Button color="inherit" component={Link} to="/itemform">Add Item</Button>
           <Button color="inherit" component={Link} to='/cart'>Cart</Button>
           {!currentUser && (
             <>

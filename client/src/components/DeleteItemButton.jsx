@@ -10,9 +10,9 @@ export default function DeleteItemButton({ onClick }) {
       <Button variant="contained" startIcon={<DeleteIcon />} onClick={onClick} sx={{ backgroundColor: '#b96eaa'}}>
         Delete
       </Button>
-      <Button variant="contained" startIcon={<EditIcon />} onClick={onClick} sx ={{ backgroundColor: '#b96eaa'}}>
+      {/* <Button variant="contained" startIcon={<EditIcon />} onClick={onClick} sx ={{ backgroundColor: '#b96eaa'}}>
         Edit
-      </Button>
+      </Button> */}
     </Stack>
   );
 }
